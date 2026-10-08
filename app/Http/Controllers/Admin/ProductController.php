@@ -189,6 +189,7 @@ class ProductController extends Controller
             'description',
             'price',
             'promo_price',
+            'quantity',
             'meta_title',
             'meta_description',
             'is_featured',
@@ -198,6 +199,8 @@ class ProductController extends Controller
 
         $data['category_id'] = (int) $data['category_id'];
         $data['sort_order'] = (int) $data['sort_order'];
+        $quantity = $data['quantity'] ?? null;
+        $data['quantity'] = $quantity !== null && $quantity !== '' ? (int) $quantity : null;
         $data['slug'] = $this->resolveSlug($request, $product);
         $data['specifications'] = $request->specifications();
 

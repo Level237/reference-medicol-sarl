@@ -110,6 +110,7 @@
                                 <th scope="col" class="px-6 py-3.5">Produit</th>
                                 <th scope="col" class="px-4 py-3.5">Catégorie</th>
                                 <th scope="col" class="px-4 py-3.5">Prix indicatif</th>
+                                <th scope="col" class="px-4 py-3.5">Stock</th>
                                 <th scope="col" class="px-4 py-3.5">Statut</th>
                                 <th scope="col" class="px-6 py-3.5 text-right">Actions</th>
                             </tr>
@@ -153,6 +154,21 @@
                                             @endif
                                         @else
                                             <span class="font-normal text-[#98a2b3] italic">Sur devis</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-4 text-xs">
+                                        @if ($product->quantity !== null)
+                                            @if ($product->quantity > 0)
+                                                <span class="inline-flex items-center gap-1 rounded-md bg-[#ecfdf3] px-2 py-0.5 text-xs font-medium text-[#027a48] border border-[#a6f4c5]">
+                                                    {{ $product->quantity }} en stock
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center gap-1 rounded-md bg-[#fef3f2] px-2 py-0.5 text-xs font-medium text-[#b42318] border border-[#fecdca]">
+                                                    Rupture
+                                                </span>
+                                            @endif
+                                        @else
+                                            <span class="text-[#98a2b3] italic text-xs">Non défini</span>
                                         @endif
                                     </td>
                                     <td class="px-4 py-4">

@@ -153,6 +153,7 @@
                                     <th scope="col" class="px-6 py-3">Produit</th>
                                     <th scope="col" class="px-4 py-3">Catégorie</th>
                                     <th scope="col" class="px-4 py-3">Prix indicatif</th>
+                                    <th scope="col" class="px-4 py-3">Stock</th>
                                     <th scope="col" class="px-4 py-3">Statut</th>
                                     <th scope="col" class="px-6 py-3 text-right">Action</th>
                                 </tr>
@@ -176,6 +177,13 @@
                                                 {{ number_format((float) $product->effectivePrice(), 2, ',', ' ') }} €
                                             @else
                                                 <span class="text-[#98a2b3] italic">Sur devis</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-4 text-xs">
+                                            @if($product->quantity !== null)
+                                                <span class="font-medium text-[#344054]">{{ $product->quantity }}</span>
+                                            @else
+                                                <span class="text-[#98a2b3] italic">-</span>
                                             @endif
                                         </td>
                                         <td class="px-4 py-4 text-xs">

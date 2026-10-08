@@ -169,15 +169,15 @@
                             </div>
                         </section>
 
-                        <!-- Tarification indicative -->
+                        <!-- Tarification indicative et stock -->
                         <section class="rounded-2xl border border-[#eaecf0] bg-white p-5 shadow-xs sm:p-6">
                             <div class="border-b border-[#eaecf0] pb-4">
-                                <h2 class="text-base font-semibold text-[#101828]">Prix indicatif</h2>
+                                <h2 class="text-base font-semibold text-[#101828]">Prix indicatif & Disponibilité</h2>
                                 <p class="text-xs text-[#667085] mt-0.5">
-                                    Laissez les deux champs vides pour un appareil « Sur devis ». Le promo ne s’applique que s’il est strictement inférieur au prix standard.
+                                    Laissez les deux champs de prix vides pour un appareil « Sur devis ». La quantité en stock est optionnelle.
                                 </p>
                             </div>
-                            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                            <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                                 <div>
                                     <label for="price" class="{{ $label }}">Prix standard (€)</label>
                                     <div class="relative">
@@ -209,6 +209,22 @@
                                         >
                                         <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-xs font-semibold text-[#98a2b3]">€</span>
                                     </div>
+                                </div>
+                                <div>
+                                    <label for="quantity" class="{{ $label }}">Quantité en stock</label>
+                                    <div class="relative">
+                                        <input
+                                            id="quantity"
+                                            name="quantity"
+                                            type="number"
+                                            min="0"
+                                            step="1"
+                                            value="{{ old('quantity', $product->quantity) }}"
+                                            placeholder="Ex: 5"
+                                            class="{{ $field }}"
+                                        >
+                                    </div>
+                                    <p class="mt-1 text-[11px] text-[#667085]">Optionnel. Laissez vide si non géré.</p>
                                 </div>
                             </div>
                         </section>

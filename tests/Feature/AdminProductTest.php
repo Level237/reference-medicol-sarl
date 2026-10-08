@@ -341,6 +341,29 @@ class AdminProductTest extends TestCase
             ->assertDontSee('Moniteur multiparamétrique', false);
     }
 
+    public function test_admin_can_save_optional_quantity_on_product(): void
+    {
+        $admin = User::factory()->admin()->create();
+        $category = $this->category();
+
+        $this->actingAs($admin)->post(route('admin.products.store'), $this->payload($category, [
+            'name' => 'Table opératoire',
+            'quantity' => 12,
+        ]))->assertRedirect();
+
+        $product = Product::query()->where('name', 'Table opératoire')->first();
+        $this->assertNotNull($product);
+        $this->assertSame(12, $product->quantity);
+
+        // Mise à jour vers null (vide)
+        $this->actingAs($admin)->put(route('admin.products.update', $product), $this->payload($category, [
+            'name' => 'Table opératoire',
+            'quantity' => '',
+        ]))->assertRedirect();
+
+        $this->assertNull($product->fresh()->quantity);
+    }
+
     private function category(): Category
     {
         return Category::query()->create([

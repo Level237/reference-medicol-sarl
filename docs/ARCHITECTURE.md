@@ -8,6 +8,7 @@ Laravel [version] · Blade · SQLite (ou MySQL) · Tailwind (ou CSS simple)
 ## Où vit quoi
 - Pages / routes : `routes/web.php`
 - Vues : `resources/views/`
+- Layout public : `resources/views/layouts/public.blade.php`. Il inclut `partials/topbar` (barre de contact) et `partials/header` (logo, navigation, recherche, devis). Ces deux composants sont réutilisés par ce layout. L’accueil est `resources/views/home.blade.php`.
 - Logique simple (ex : envoi du formulaire de contact) : `app/Http/Controllers/`
 - Styles : [Tailwind via CDN, ou fichier CSS dans `public/`]
 
@@ -16,7 +17,7 @@ Laravel [version] · Blade · SQLite (ou MySQL) · Tailwind (ou CSS simple)
 Catalogue, en place :
 
 - Category — nom, slug, description, image de profil (nullable), texte alternatif, meta_title, meta_description, meta_image, ordre, publié
-- Product — catégorie, nom, slug, référence, résumé, description, caractéristiques (JSON), prix et prix promo (vides autorisés, indicatifs), meta_title, meta_description, meta_image, mis en avant, ordre, publié. Pas de colonne image. Le montant affiché est le prix promo seulement s’il est strictement inférieur au prix ; sinon le prix. Les deux vides : pas de montant public
+- Product — catégorie, nom, slug, référence, résumé, description, caractéristiques (JSON), prix et prix promo (vides autorisés, indicatifs), quantité en stock (nullable, optionnelle), meta_title, meta_description, meta_image, mis en avant, ordre, publié. Pas de colonne image. Le montant affiché est le prix promo seulement s’il est strictement inférieur au prix ; sinon le prix. Les deux vides : pas de montant public
 - ProductImage — produit, chemin du fichier, texte alternatif, ordre. La première selon l’ordre est la photo de carte. Supprimer le produit supprime ses photos. Une catégorie qui contient des produits ne se supprime pas
 
 Les fichiers image restent sur le disque. La base ne stocke que le chemin.

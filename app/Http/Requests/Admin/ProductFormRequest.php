@@ -78,6 +78,7 @@ abstract class ProductFormRequest extends FormRequest
             'specifications.*.value' => ['nullable', 'string', 'max:1000'],
             'price' => ['nullable', 'numeric', 'min:0', 'decimal:0,2'],
             'promo_price' => ['nullable', 'numeric', 'min:0', 'decimal:0,2'],
+            'quantity' => ['nullable', 'integer', 'min:0', 'max:1000000'],
             'meta_title' => ['nullable', 'string', 'max:255'],
             'meta_description' => ['nullable', 'string', 'max:320'],
             'meta_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:5120'],
