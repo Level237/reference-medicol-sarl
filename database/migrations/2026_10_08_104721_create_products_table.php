@@ -16,12 +16,17 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->restrictOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('reference')->nullable()->unique();
             $table->string('summary')->nullable();
             $table->text('description')->nullable();
             $table->json('specifications')->nullable();
+            $table->decimal('price', 12, 2)->nullable();
+            $table->decimal('promo_price', 12, 2)->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description', 320)->nullable();
             $table->string('meta_image')->nullable();
+            $table->boolean('is_featured')->default(false);
+            $table->unsignedInteger('sort_order')->default(0);
             $table->boolean('is_published')->default(false);
             $table->timestamps();
         });

@@ -117,4 +117,59 @@ class CatalogSchemaTest extends TestCase
 
         $category->delete();
     }
+
+    public function test_product_uses_promo_price_only_when_it_is_lower(): void
+    {
+        $category = Category::create([
+            'name' => 'Imagerie',
+            'slug' => 'imagerie',
+        ]);
+
+        $promo = Product::create([
+            'category_id' => $category->id,
+            'name' => 'Échographe portable',
+            'slug' => 'echographe-portable',
+            'reference' => 'ECH-100',
+            'price' => '1500.00',
+            'promo_price' => '1200.00',
+            'sort_order' => 2,
+            'is_featured' => true,
+        ]);
+
+        $promo->refresh();
+
+        $this->assertSame('ECH-100', $promo->reference);
+        $this->assertSame('1200.00', $promo->effectivePrice());
+        $this->assertSame('1500.00', $promo->compareAtPrice());
+        $this->assertTrue($promo->is_featured);
+        $this->assertSame(2, $promo->sort_order);
+
+        $regular = Product::create([
+            'category_id' => $category->id,
+            'name' => 'Moniteur',
+            'slug' => 'moniteur',
+            'price' => '800.00',
+            'promo_price' => '800.00',
+        ]);
+
+        $regular->refresh();
+
+        $this->assertSame('800.00', $regular->effectivePrice());
+        $this->assertNull($regular->compareAtPrice());
+        $this->assertFalse($regular->is_featured);
+        $this->assertSame(0, $regular->sort_order);
+
+        $onQuote = Product::create([
+            'category_id' => $category->id,
+            'name' => 'Scanner',
+            'slug' => 'scanner',
+        ]);
+
+        $onQuote->refresh();
+
+        $this->assertNull($onQuote->price);
+        $this->assertNull($onQuote->promo_price);
+        $this->assertNull($onQuote->effectivePrice());
+        $this->assertNull($onQuote->compareAtPrice());
+    }
 }

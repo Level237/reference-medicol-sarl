@@ -16,7 +16,7 @@ Laravel [version] · Blade · SQLite (ou MySQL) · Tailwind (ou CSS simple)
 Catalogue, en place :
 
 - Category — nom, slug, description, image de profil (nullable), texte alternatif, meta_title, meta_description, meta_image, ordre, publié
-- Product — catégorie, nom, slug, résumé, description, caractéristiques (JSON), meta_title, meta_description, meta_image, publié. Pas de colonne image
+- Product — catégorie, nom, slug, référence, résumé, description, caractéristiques (JSON), prix et prix promo (vides autorisés, indicatifs), meta_title, meta_description, meta_image, mis en avant, ordre, publié. Pas de colonne image. Le montant affiché est le prix promo seulement s’il est strictement inférieur au prix ; sinon le prix. Les deux vides : pas de montant public
 - ProductImage — produit, chemin du fichier, texte alternatif, ordre. La première selon l’ordre est la photo de carte. Supprimer le produit supprime ses photos. Une catégorie qui contient des produits ne se supprime pas
 
 Les fichiers image restent sur le disque. La base ne stocke que le chemin.
