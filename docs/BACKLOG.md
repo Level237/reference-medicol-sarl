@@ -43,7 +43,8 @@ Cœur du site. Indépendant du rendu final de l’accueil.
 
 ### 5. Administration
 
-- [ ] Connexion admin (un rôle, pas d’inscription publique)
+- [x] Page de connexion admin sur `/k8f3c1a9e2` (hors menu, sans inscription publique)
+- [x] Rôle admin sur le compte
 - [ ] Gestion des produits et des catégories (créer, modifier, publier, dépublier)
 - [ ] Gestion des demandes de devis (liste, détail, statut)
 - [ ] Gestion des messages de contact (liste, détail, marquer comme lu)

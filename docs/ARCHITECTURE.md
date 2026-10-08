@@ -21,7 +21,9 @@ Catalogue, en place :
 
 Les fichiers image restent sur le disque. La base ne stocke que le chemin.
 
-À venir : demande de devis et ses lignes, message de contact, compte admin.
+Connexion admin : chemin dans `config/access.php` (`/k8f3c1a9e2`), `SessionController`, vue `resources/views/access/login.blade.php`. Image `public/assets/images/login.jpeg`. Le compte est créé par `AdminSeeder` (`ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`). Seul un utilisateur `is_admin` reste connecté. Le middleware `admin` (`EnsureAdmin`) protège `routes/admin.php`. Les tentatives sont limitées par le limiteur `access` (5 par minute, e-mail + adresse IP).
+
+À venir : demande de devis et ses lignes, message de contact.
 
 ## Conventions
 - Une page = une route = une vue Blade dédiée.

@@ -2,8 +2,18 @@
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-primary: #029e55;
+    --color-primary-hover: #028347;
+    --color-secondary: #edbb45;
+    --color-secondary-hover: #dba636;
+    --color-dark: #1d2939;
+    --color-muted: #667085;
+    --color-subtle: #98a2b3;
 }
