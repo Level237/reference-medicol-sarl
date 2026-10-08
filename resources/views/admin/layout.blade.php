@@ -35,6 +35,7 @@
         </div>
 
         @include('admin.quotes.partials.preview-drawer')
+        @include('admin.messages.partials.preview-drawer')
 
         <script>
             // Contrôle du drawer mobile

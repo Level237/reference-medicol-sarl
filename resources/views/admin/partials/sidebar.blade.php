@@ -153,17 +153,31 @@
 
             <!-- Messages -->
             <div>
-                <div class="group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-[#667085] transition-colors hover:bg-[#f9fafb] hover:text-[#1d2939]" aria-disabled="true">
+                <a
+                    href="{{ route('admin.messages.index') }}"
+                    @if (request()->routeIs('admin.messages.*')) aria-current="page" @endif
+                    @class([
+                        'group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition-colors',
+                        'bg-[#f2f4f7] font-semibold text-[#1d2939]' => request()->routeIs('admin.messages.*'),
+                        'font-medium text-[#667085] hover:bg-[#f9fafb] hover:text-[#1d2939]' => ! request()->routeIs('admin.messages.*'),
+                    ])
+                >
                     <span class="flex items-center gap-3.5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5 text-[#667085] group-hover:text-[#1d2939]" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                         </svg>
                         <span>Messages</span>
                     </span>
-                    <span class="rounded-md bg-[#f2f4f7] px-1.5 py-0.5 text-[10px] font-semibold text-[#667085]">
-                        {{ $stats['messages_count'] ?? 0 }}
-                    </span>
-                </div>
+                    @if(($stats['messages_count'] ?? 0) > 0)
+                        <span class="rounded-full bg-[#fef0c7] px-2 py-0.5 text-[10px] font-bold text-[#b54708]">
+                            {{ $stats['messages_count'] }}
+                        </span>
+                    @else
+                        <span class="rounded-md bg-[#f2f4f7] px-1.5 py-0.5 text-[10px] font-semibold text-[#667085]">
+                            0
+                        </span>
+                    @endif
+                </a>
             </div>
 
             <!-- Paramètres / Configuration -->

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\Product;
 use App\Models\QuoteRequest;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -43,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
                     'products_published' => Product::query()->where('is_published', true)->count(),
                     'categories_count' => Category::query()->count(),
                     'quotes_count' => QuoteRequest::query()->where('status', QuoteRequest::STATUS_PENDING)->count(),
-                    'messages_count' => 0,
+                    'messages_count' => ContactMessage::query()->where('is_read', false)->count(),
                 ],
             ]);
         });

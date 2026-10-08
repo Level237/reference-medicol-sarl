@@ -49,7 +49,7 @@ Cœur du site. Indépendant du rendu final de l’accueil.
 - [x] Gestion des produits (créer, modifier, publier, dépublier, supprimer)
 - [x] Gestion des catégories (créer, modifier, publier, dépublier, supprimer)
 - [x] Gestion des demandes de devis (liste, détail, statut, prévisualisation interactive slide-over)
-- [ ] Gestion des messages de contact (liste, détail, marquer comme lu)
+- [x] Gestion des messages de contact (liste, détail, marquer comme lu, prévisualisation interactive slide-over)
 
 ### 6. Référencement et mise en confiance
 

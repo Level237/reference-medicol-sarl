@@ -110,10 +110,10 @@
             </div>
 
             <!-- KPI 4 : Messages de contact -->
-            <div class="rounded-2xl border border-[#eaecf0] bg-white p-5 shadow-xs transition-all hover:border-[#d0d5dd] hover:shadow-sm">
+            <a href="{{ route('admin.messages.index') }}" class="group block rounded-2xl border border-[#eaecf0] bg-white p-5 shadow-xs transition-all hover:border-[#d0d5dd] hover:shadow-sm">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold text-[#667085] uppercase tracking-wider">Messages</span>
-                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f2f4f7] text-[#344054]">
+                    <span class="text-xs font-semibold text-[#667085] uppercase tracking-wider group-hover:text-[#101828]">Messages</span>
+                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f2f4f7] text-[#344054] group-hover:bg-[#eaecf0]">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                         </svg>
@@ -122,11 +122,13 @@
                 <div class="mt-4 flex items-baseline justify-between">
                     <div>
                         <span class="text-3xl font-bold tracking-tight text-[#101828]">{{ $stats['messages_count'] }}</span>
-                        <span class="block text-xs font-medium text-[#475467] mt-0.5">sollicitations reçues</span>
+                        <span class="block text-xs font-medium text-[#475467] mt-0.5">non lu(s)</span>
                     </div>
-                    <span class="text-xs text-[#667085]">Formulaire direct</span>
+                    <span class="inline-flex items-center rounded-md bg-[#f2f4f7] px-2 py-1 text-xs font-medium text-[#344054]">
+                        Formulaire direct
+                    </span>
                 </div>
-            </div>
+            </a>
         </section>
 
         <!-- 3. Section principale : Table de suivi des produits + Panneau latéral de raccourcis -->
@@ -266,6 +268,26 @@
                             </span>
                             <span class="rounded bg-[#f2f4f7] px-1.5 py-0.5 text-[10px] font-semibold text-[#667085]">+</span>
                         </a>
+
+                        <a href="{{ route('admin.messages.index') }}" class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
+                            <span class="flex items-center gap-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f2f4f7] text-[#344054]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                                        <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />
+                                        <path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z" />
+                                    </svg>
+                                </span>
+                                <span>
+                                    <span class="block text-xs font-semibold text-[#101828]">Consulter les messages</span>
+                                    <span class="block text-[11px] text-[#667085]">Boîte de réception</span>
+                                </span>
+                            </span>
+                            @if(($stats['messages_count'] ?? 0) > 0)
+                                <span class="rounded bg-[#fffaeb] px-1.5 py-0.5 text-[10px] font-semibold text-[#b54708]">{{ $stats['messages_count'] }}</span>
+                            @else
+                                <span class="rounded bg-[#f2f4f7] px-1.5 py-0.5 text-[10px] font-semibold text-[#667085]">0</span>
+                            @endif
+                        </a>
                     </div>
                 </div>
 
@@ -383,6 +405,88 @@
                 <div class="flex flex-col items-center justify-center p-8 text-center">
                     <p class="text-xs text-[#667085]">
                         Aucune demande de devis reçue pour l'instant. Les futures demandes s'afficheront directement ici.
+                    </p>
+                </div>
+            @endif
+        </div>
+
+        <!-- 5. Section Nouvelle : Derniers messages de contact avec Aperçu interactif -->
+        <div class="rounded-2xl border border-[#eaecf0] bg-white shadow-xs overflow-hidden">
+            <div class="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4.5">
+                <div>
+                    <h2 class="text-base font-semibold text-[#101828]">Derniers messages de contact reçus</h2>
+                    <p class="text-xs text-[#475467] mt-0.5">Cliquez sur « Lire » pour ouvrir et consulter instantanément le message sans rechargement</p>
+                </div>
+                <a href="{{ route('admin.messages.index') }}" class="text-xs font-semibold text-primary hover:text-primary-hover">
+                    Voir tous les messages &rarr;
+                </a>
+            </div>
+
+            @if($recentMessages->isNotEmpty())
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-[#475467]">
+                        <thead class="bg-[#f9fafb] text-xs font-medium text-[#475467] border-b border-[#eaecf0]">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Statut & Date</th>
+                                <th scope="col" class="px-4 py-3">Expéditeur</th>
+                                <th scope="col" class="px-4 py-3">Objet & Aperçu</th>
+                                <th scope="col" class="px-6 py-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#eaecf0]">
+                            @foreach($recentMessages as $msg)
+                                <tr @class([
+                                    'transition-colors hover:bg-[#f9fafb]/80',
+                                    'bg-[#fffcf5]/50' => !$msg->is_read,
+                                ])>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold {{ $msg->statusBadgeClasses() }}">
+                                                <span class="h-1.5 w-1.5 rounded-full {{ $msg->statusDotColor() }}"></span>
+                                                {{ $msg->statusLabel() }}
+                                            </span>
+                                        </div>
+                                        <div class="text-[11px] text-[#667085] mt-1">{{ $msg->created_at->diffForHumans() }}</div>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <div class="font-medium text-[#101828]">{{ $msg->name }}</div>
+                                        <div class="text-xs text-[#667085]">
+                                            @if($msg->organization)
+                                                <span class="text-[#344054]">{{ $msg->organization }}</span> •
+                                            @endif
+                                            {{ $msg->email }}
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <div class="font-semibold text-xs text-[#101828] truncate max-w-sm">
+                                            {{ $msg->subject ?: 'Sans objet' }}
+                                        </div>
+                                        <div class="text-xs text-[#667085] truncate max-w-sm mt-0.5">
+                                            {{ Str::limit($msg->message, 60) }}
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right text-xs">
+                                        <button
+                                            type="button"
+                                            @click="$dispatch('open-message-preview', '{{ route('admin.messages.show', $msg) }}')"
+                                            class="inline-flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-semibold text-[#344054] shadow-xs hover:bg-[#f9fafb] hover:text-primary transition-colors"
+                                        >
+                                            <svg class="h-3.5 w-3.5 text-[#667085]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            <span>Lire</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="flex flex-col items-center justify-center p-8 text-center">
+                    <p class="text-xs text-[#667085]">
+                        Aucun message reçu pour l'instant. Les sollicitations envoyées via le formulaire de contact apparaîtront ici.
                     </p>
                 </div>
             @endif

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\QuoteRequestController;
 use App\Http\Controllers\DashboardController;
@@ -60,3 +61,18 @@ Route::put(config('access.path').'/quotes/{quote}/status', [QuoteRequestControll
 
 Route::delete(config('access.path').'/quotes/{quote}', [QuoteRequestController::class, 'destroy'])
     ->name('admin.quotes.destroy');
+
+Route::get(config('access.path').'/messages', [ContactMessageController::class, 'index'])
+    ->name('admin.messages.index');
+
+Route::get(config('access.path').'/messages/{message}', [ContactMessageController::class, 'show'])
+    ->name('admin.messages.show');
+
+Route::patch(config('access.path').'/messages/{message}/read', [ContactMessageController::class, 'toggleRead'])
+    ->name('admin.messages.toggle-read');
+
+Route::put(config('access.path').'/messages/{message}', [ContactMessageController::class, 'update'])
+    ->name('admin.messages.update');
+
+Route::delete(config('access.path').'/messages/{message}', [ContactMessageController::class, 'destroy'])
+    ->name('admin.messages.destroy');

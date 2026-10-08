@@ -31,7 +31,7 @@ Catégories admin : sous le même préfixe (`CategoryController`, `admin.categor
 
 Demandes de devis admin : sous le même préfixe (`QuoteRequestController`, `admin.quotes.*`). Liste paginée avec filtres par statut (pending, processing, processed, rejected) et recherche textuelle. Panneau latéral (slide-over modal) interactif Alpine.js pour la prévisualisation instantanée en temps réel sans rechargement de page, accessible depuis la liste et depuis le tableau de bord. Mise à jour directe du statut et notes internes. Les lignes `quote_request_items` conservent le libellé et le prix de l'équipement au moment de la demande même si le produit est supprimé du catalogue.
 
-À venir : message de contact.
+Messages de contact admin : sous le même préfixe (`ContactMessageController`, `admin.messages.*`). Table `contact_messages`. Liste paginée avec filtres par état de lecture (non lus, lus) et recherche textuelle. Panneau latéral (slide-over modal) interactif Alpine.js pour l'aperçu instantané en temps réel, bascule lu/non lu en AJAX, réponse e-mail directe (`mailto:`) et notes internes. Visible également sur le tableau de bord et dans la barre latérale avec badge du nombre de messages non lus.
 
 ## Conventions
 - Une page = une route = une vue Blade dédiée.
