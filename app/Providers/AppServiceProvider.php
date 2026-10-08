@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\QuoteRequest;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\View\View as RenderedView;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +28,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer(['admin.layout', 'admin.dashboard'], function (RenderedView $view): void {
+            $admin = auth()->user();
+
+            if ($admin === null) {
+                return;
+            }
+
+            $view->with([
+                'admin' => $admin,
+                'initial' => mb_strtoupper(mb_substr((string) $admin->name, 0, 1)),
+                'stats' => [
+                    'products_count' => Product::query()->count(),
+                    'products_published' => Product::query()->where('is_published', true)->count(),
+                    'categories_count' => Category::query()->count(),
+                    'quotes_count' => QuoteRequest::query()->where('status', QuoteRequest::STATUS_PENDING)->count(),
+                    'messages_count' => 0,
+                ],
+            ]);
+        });
+
         RateLimiter::for('access', function (Request $request) {
             $email = Str::transliterate(Str::lower((string) $request->input('email')));
 

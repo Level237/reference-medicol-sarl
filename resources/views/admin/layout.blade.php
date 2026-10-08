@@ -17,10 +17,24 @@
                 @include('admin.partials.header')
 
                 <main class="flex-1 px-4 py-8 sm:px-8 lg:px-10">
+                    @if (session('status'))
+                        <div class="mb-6 rounded-xl border border-[#a6f4c5] bg-[#ecfdf3] px-4 py-3 text-sm font-medium text-[#027a48]" role="status">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="mb-6 rounded-xl border border-[#fecdca] bg-[#fef3f2] px-4 py-3 text-sm font-medium text-[#b42318]" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     @yield('content')
                 </main>
             </div>
         </div>
+
+        @include('admin.quotes.partials.preview-drawer')
 
         <script>
             // Contrôle du drawer mobile

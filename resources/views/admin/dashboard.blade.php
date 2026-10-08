@@ -34,15 +34,15 @@
                     <span>Voir le site</span>
                 </a>
 
-                <button
-                    type="button"
-                    class="inline-flex items-center gap-2 rounded-xl bg-primary px-3.5 py-2 text-xs sm:text-sm font-semibold text-white shadow-xs transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                <a
+                    href="{{ route('admin.products.create') }}"
+                    class="inline-flex items-center gap-2 rounded-xl bg-primary px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:text-sm"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
                         <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
                     </svg>
                     <span>Nouveau produit</span>
-                </button>
+                </a>
             </div>
         </section>
 
@@ -189,9 +189,9 @@
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 text-right text-xs">
-                                            <button type="button" class="font-semibold text-primary hover:text-primary-hover">
+                                            <a href="{{ route('admin.products.edit', $product) }}" class="font-semibold text-primary hover:text-primary-hover">
                                                 Modifier
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -222,24 +222,24 @@
                         Actions & Raccourcis
                     </h2>
                     <div class="mt-4 space-y-2.5">
-                        <div class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f2f4f7] text-[#344054]">
+                        <a href="{{ route('admin.products.create') }}" class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
+                            <span class="flex items-center gap-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f2f4f7] text-[#344054]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
                                         <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
                                     </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-semibold text-[#101828]">Ajouter un produit</p>
-                                    <p class="text-[11px] text-[#667085]">Fiche technique & photos</p>
-                                </div>
-                            </div>
+                                </span>
+                                <span>
+                                    <span class="block text-xs font-semibold text-[#101828]">Ajouter un produit</span>
+                                    <span class="block text-[11px] text-[#667085]">Fiche technique & photos</span>
+                                </span>
+                            </span>
                             <span class="rounded bg-[#f2f4f7] px-1.5 py-0.5 text-[10px] font-semibold text-[#667085]">+</span>
-                        </div>
+                        </a>
 
-                        <div class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
+                        <a href="{{ route('admin.quotes.index') }}" class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
                             <div class="flex items-center gap-3">
-                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f2f4f7] text-[#344054]">
+                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#fef0c7] text-[#b54708]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
                                         <path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 0 0 3 3.5v13A1.5 1.5 0 0 0 4.5 18h11a1.5 1.5 0 0 0 1.5-1.5V7.621a1.5 1.5 0 0 0-.44-1.06l-4.12-4.122A1.5 1.5 0 0 0 11.378 2H4.5Zm2.25 8.5a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm0 3a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z" clip-rule="evenodd" />
                                     </svg>
@@ -249,23 +249,23 @@
                                     <p class="text-[11px] text-[#667085]">Chiffrage & expédition</p>
                                 </div>
                             </div>
-                            <span class="rounded bg-[#fffaeb] px-1.5 py-0.5 text-[10px] font-semibold text-[#b54708]">0</span>
-                        </div>
+                            <span class="rounded bg-[#fffaeb] px-1.5 py-0.5 text-[10px] font-semibold text-[#b54708]">{{ $stats['quotes_count'] }}</span>
+                        </a>
 
-                        <div class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f2f4f7] text-[#344054]">
+                        <a href="{{ route('admin.categories.index') }}" class="group flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:border-[#d0d5dd] hover:bg-[#f9fafb]">
+                            <span class="flex items-center gap-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f2f4f7] text-[#344054]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
                                         <path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 0 0 2 4.25v2.5A2.25 2.25 0 0 0 4.25 9h2.5A2.25 2.25 0 0 0 9 6.75v-2.5A2.25 2.25 0 0 0 6.75 2h-2.5Zm0 9A2.25 2.25 0 0 0 2 13.25v2.5A2.25 2.25 0 0 0 4.25 18h2.5A2.25 2.25 0 0 0 9 15.75v-2.5A2.25 2.25 0 0 0 6.75 11h-2.5Zm9-9a2.25 2.25 0 0 0-2.25 2.25v2.5A2.25 2.25 0 0 0 13.25 9h2.5A2.25 2.25 0 0 0 18 6.75v-2.5A2.25 2.25 0 0 0 15.75 2h-2.5Zm0 9a2.25 2.25 0 0 0-2.25 2.25v2.5a2.25 2.25 0 0 0 2.25 2.25h2.5A2.25 2.25 0 0 0 18 15.75v-2.5A2.25 2.25 0 0 0 15.75 11h-2.5Z" clip-rule="evenodd" />
                                     </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-semibold text-[#101828]">Gérer les catégories</p>
-                                    <p class="text-[11px] text-[#667085]">Arborescence médicale</p>
-                                </div>
-                            </div>
+                                </span>
+                                <span>
+                                    <span class="block text-xs font-semibold text-[#101828]">Gérer les catégories</span>
+                                    <span class="block text-[11px] text-[#667085]">Familles d’équipements</span>
+                                </span>
+                            </span>
                             <span class="rounded bg-[#f2f4f7] px-1.5 py-0.5 text-[10px] font-semibold text-[#667085]">+</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -293,7 +293,7 @@
                             <span class="mt-1 h-2 w-2 rounded-full bg-[#edbb45] shrink-0"></span>
                             <div>
                                 <p class="font-medium text-[#101828]">Panier & Devis</p>
-                                <p class="text-[11px] text-[#667085]">En attente de connexion avec le front client</p>
+                                <p class="text-[11px] text-[#667085]">Gestion et aperçu instantané opérationnels</p>
                             </div>
                         </div>
 
@@ -307,6 +307,86 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- 4. Section Nouvelle : Dernières Demandes de devis avec Aperçu interactif -->
+        <div class="rounded-2xl border border-[#eaecf0] bg-white shadow-xs overflow-hidden">
+            <div class="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4.5">
+                <div>
+                    <h2 class="text-base font-semibold text-[#101828]">Dernières demandes de devis reçues</h2>
+                    <p class="text-xs text-[#475467] mt-0.5">Cliquez sur « Aperçu » pour inspecter les coordonnées et les équipements en temps réel</p>
+                </div>
+                <a href="{{ route('admin.quotes.index') }}" class="text-xs font-semibold text-primary hover:text-primary-hover">
+                    Voir tous les devis &rarr;
+                </a>
+            </div>
+
+            @if($recentQuotes->isNotEmpty())
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-[#475467]">
+                        <thead class="bg-[#f9fafb] text-xs font-medium text-[#475467] border-b border-[#eaecf0]">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Réf & Date</th>
+                                <th scope="col" class="px-4 py-3">Établissement & Demandeur</th>
+                                <th scope="col" class="px-4 py-3">Équipements</th>
+                                <th scope="col" class="px-4 py-3">Montant</th>
+                                <th scope="col" class="px-4 py-3">Statut</th>
+                                <th scope="col" class="px-6 py-3 text-right">Aperçu rapide</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#eaecf0]">
+                            @foreach($recentQuotes as $quote)
+                                <tr class="hover:bg-[#f9fafb]/80 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-[#101828]">{{ $quote->reference }}</div>
+                                        <div class="text-[11px] text-[#667085]">{{ $quote->created_at->diffForHumans() }}</div>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <div class="font-medium text-[#101828]">{{ $quote->organization_name }}</div>
+                                        <div class="text-xs text-[#667085]">{{ $quote->contact_name }} • {{ $quote->phone }}</div>
+                                    </td>
+                                    <td class="px-4 py-4 text-xs font-medium text-[#344054]">
+                                        {{ $quote->items->count() }} appareil(s)
+                                    </td>
+                                    <td class="px-4 py-4 text-xs font-semibold text-[#101828]">
+                                        @if($quote->estimated_total)
+                                            {{ number_format((float) $quote->estimated_total, 2, ',', ' ') }} €
+                                        @else
+                                            <span class="text-[#98a2b3] italic font-normal">Sur devis</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-4 text-xs">
+                                        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold {{ $quote->statusBadgeClasses() }}">
+                                            <span class="h-1.5 w-1.5 rounded-full {{ $quote->statusDotColor() }}"></span>
+                                            {{ $quote->statusLabel() }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right text-xs">
+                                        <button
+                                            type="button"
+                                            @click="$dispatch('open-quote-preview', '{{ route('admin.quotes.show', $quote) }}')"
+                                            class="inline-flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-semibold text-[#344054] shadow-xs hover:bg-[#f9fafb] hover:text-primary transition-colors"
+                                        >
+                                            <svg class="h-3.5 w-3.5 text-[#667085]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            <span>Aperçu</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="flex flex-col items-center justify-center p-8 text-center">
+                    <p class="text-xs text-[#667085]">
+                        Aucune demande de devis reçue pour l'instant. Les futures demandes s'afficheront directement ici.
+                    </p>
+                </div>
+            @endif
+        </div>
         </div>
     </div>
 @endsection

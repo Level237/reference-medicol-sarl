@@ -23,9 +23,15 @@ Les fichiers image restent sur le disque. La base ne stocke que le chemin.
 
 Connexion admin : chemin dans `config/access.php` (`/k8f3c1a9e2`), `SessionController`, vue `resources/views/access/login.blade.php`. Image `public/assets/images/login.jpeg`. Le compte est créé par `AdminSeeder` (`ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`). Seul un utilisateur `is_admin` reste connecté. Le middleware `admin` (`EnsureAdmin`) protège `routes/admin.php`. Les tentatives sont limitées par le limiteur `access` (5 par minute, e-mail + adresse IP).
 
-Tableau de bord : `/k8f3c1a9e2/board` (`DashboardController`, vue `resources/views/admin/dashboard.blade.php`). Le cadre est `resources/views/admin/layout.blade.php` : barre latérale statique, en-tête statique, contenu principal. La déconnexion est `POST /k8f3c1a9e2/logout`.
+Tableau de bord : `/k8f3c1a9e2/board` (`DashboardController`, vue `resources/views/admin/dashboard.blade.php`). Le cadre est `resources/views/admin/layout.blade.php` : barre latérale, en-tête, contenu principal. La déconnexion est `POST /k8f3c1a9e2/logout`.
 
-À venir : demande de devis et ses lignes, message de contact.
+Produits admin : sous le même préfixe secret (`ProductController`, `admin.products.*`). Liste, création, modification, publication et suppression. Les caractéristiques sont une liste nom → valeur. Le slug est généré depuis le nom s’il est vide, et n’est pas recalculé tant qu’on ne le change pas. Les photos et l’image de référencement vont sur le disque `public`, dans `products/`. Supprimer le produit efface aussi ces fichiers.
+
+Catégories admin : sous le même préfixe (`CategoryController`, `admin.categories.*`). Liste, création, modification, publication et suppression. Le slug suit la même règle que le produit. L’image de profil et l’image de référencement vont sur le disque `public`, dans `categories/`. Une catégorie qui contient encore des produits ne se supprime pas.
+
+Demandes de devis admin : sous le même préfixe (`QuoteRequestController`, `admin.quotes.*`). Liste paginée avec filtres par statut (pending, processing, processed, rejected) et recherche textuelle. Panneau latéral (slide-over modal) interactif Alpine.js pour la prévisualisation instantanée en temps réel sans rechargement de page, accessible depuis la liste et depuis le tableau de bord. Mise à jour directe du statut et notes internes. Les lignes `quote_request_items` conservent le libellé et le prix de l'équipement au moment de la demande même si le produit est supprimé du catalogue.
+
+À venir : message de contact.
 
 ## Conventions
 - Une page = une route = une vue Blade dédiée.
