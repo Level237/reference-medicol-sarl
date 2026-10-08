@@ -48,7 +48,7 @@ class AccessSessionTest extends TestCase
             'remember' => '1',
         ]);
 
-        $response->assertRedirect(route('home'));
+        $response->assertRedirect(route('admin.dashboard'));
         $this->assertAuthenticatedAs($user);
     }
 
@@ -66,12 +66,12 @@ class AccessSessionTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_authenticated_visitor_is_sent_home(): void
+    public function test_authenticated_admin_is_sent_to_the_dashboard(): void
     {
         $user = User::factory()->admin()->create();
 
         $response = $this->actingAs($user)->get(route('access.create'));
 
-        $response->assertRedirect(route('home'));
+        $response->assertRedirect(route('admin.dashboard'));
     }
 }

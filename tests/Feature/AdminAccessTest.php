@@ -32,7 +32,7 @@ class AdminAccessTest extends TestCase
         $this->post(route('access.store'), [
             'email' => 'admin@example.com',
             'password' => 'mot-de-passe-solide',
-        ])->assertRedirect(route('home'));
+        ])->assertRedirect(route('admin.dashboard'));
 
         $this->assertAuthenticatedAs($admin);
     }

@@ -23,6 +23,8 @@ Les fichiers image restent sur le disque. La base ne stocke que le chemin.
 
 Connexion admin : chemin dans `config/access.php` (`/k8f3c1a9e2`), `SessionController`, vue `resources/views/access/login.blade.php`. Image `public/assets/images/login.jpeg`. Le compte est créé par `AdminSeeder` (`ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`). Seul un utilisateur `is_admin` reste connecté. Le middleware `admin` (`EnsureAdmin`) protège `routes/admin.php`. Les tentatives sont limitées par le limiteur `access` (5 par minute, e-mail + adresse IP).
 
+Tableau de bord : `/k8f3c1a9e2/board` (`DashboardController`, vue `resources/views/admin/dashboard.blade.php`). Le cadre est `resources/views/admin/layout.blade.php` : barre latérale statique, en-tête statique, contenu principal. La déconnexion est `POST /k8f3c1a9e2/logout`.
+
 À venir : demande de devis et ses lignes, message de contact.
 
 ## Conventions

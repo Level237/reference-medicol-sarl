@@ -16,9 +16,15 @@
                     <div class="mb-8 flex">
                         <a href="{{ route('home') }}" class="inline-block transition-opacity hover:opacity-90">
                             <img
-                                src="{{ asset('assets/images/logo.jpeg') }}"
+                                src="{{ asset('assets/images/logo.png') }}"
                                 alt="Référence Médico SARL"
                                 class="h-20 w-auto object-contain"
+                            >
+                            <img
+                                src="{{ asset('assets/images/logo.jpeg') }}"
+                                alt=""
+                                class="hidden"
+                                aria-hidden="true"
                             >
                         </a>
                     </div>
