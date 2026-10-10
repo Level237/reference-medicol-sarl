@@ -1,15 +1,94 @@
 @extends('layouts.public')
 
-@section('title', 'Accueil')
+@section('title', 'Tout le matériel pour vos soins')
+@section('meta_description', "Des équipements fiables pour les professionnels de santé à Douala et dans toute l'Afrique centrale. Référence Médico Sarl.")
 
 @section('content')
-    <section class="mx-auto flex min-h-[50vh] max-w-7xl flex-col justify-center px-4 py-16 sm:px-6 lg:px-8">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary">Référence Médico Sarl</p>
-        <h1 class="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-dark sm:text-4xl">
-            Équipements médicaux pour hôpitaux et cliniques.
-        </h1>
-        <p class="mt-4 max-w-xl text-base leading-relaxed text-muted">
-            Parcourez le catalogue, constituez votre sélection, puis demandez un devis.
-        </p>
+    {{-- Section Hero reproduction fidèle avec image de fond --}}
+    <section class="relative min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px] overflow-hidden bg-white">
+        {{-- Image d'arrière-plan --}}
+        <div
+            class="absolute inset-0 bg-no-repeat bg-cover bg-[position:85%_center] sm:bg-[position:right_center]"
+            style="background-image: url('{{ asset('assets/images/hero.png') }}');"
+            aria-hidden="true"
+        ></div>
+
+        {{-- Voile dégradé blanc subtil sur mobile et tablette pour garantir la lisibilité du texte --}}
+        <div
+            class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent lg:via-white/60 xl:via-white/40 pointer-events-none"
+            aria-hidden="true"
+        ></div>
+
+        {{-- Contenu du Hero --}}
+        <div class="relative mx-auto flex max-w-7xl flex-col justify-between px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px]">
+            {{-- Ligne supérieure : Fil d'Ariane & Tagline supérieure droite --}}
+            <div class="flex items-start justify-between gap-4">
+                {{-- Fil d'Ariane : Accueil > Catalogue --}}
+                <nav aria-label="Fil d'Ariane" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]">
+                    <a href="{{ route('home') }}" class="text-[#029e55] hover:underline transition-colors">Accueil</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span class="text-[#667085]">Catalogue</span>
+                </nav>
+
+                {{-- Accroche en haut à droite visible sur écran large --}}
+                <div class="hidden md:block text-right">
+                    <p class="text-xs sm:text-sm font-semibold text-[#1d2939] leading-snug">
+                        Équiper<br>
+                        aujourd'hui<br>
+                        pour une santé<br>
+                        meilleure demain
+                    </p>
+                    <div class="mt-1.5 h-0.5 w-8 bg-[#029e55] ml-auto rounded-full" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            {{-- Bloc principal de gauche : Titre, Description et Barre de Recherche --}}
+            <div class="my-auto max-w-xl lg:max-w-2xl py-6">
+                {{-- Titre principal --}}
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight text-[#1d2939] leading-[1.12]">
+                    Tout le matériel<br>
+                    pour vos soins.
+                </h1>
+
+                {{-- Description --}}
+                <p class="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#667085] leading-relaxed max-w-lg">
+                    Des équipements fiables pour les professionnels de santé à Douala et dans toute l'Afrique centrale
+                </p>
+
+                {{-- Barre de recherche --}}
+                <form action="{{ route('home') }}" method="GET" class="mt-6 sm:mt-8 max-w-xl">
+                    <div class="flex items-center rounded-2xl bg-white p-1.5 sm:p-2 shadow-lg shadow-black/5 ring-1 ring-[#e4e7ec] focus-within:ring-2 focus-within:ring-[#029e55] transition-all">
+                        {{-- Icône Loupe --}}
+                        <div class="flex items-center pl-3 pr-2 text-[#98a2b3]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                        </div>
+
+                        {{-- Champ texte --}}
+                        <input
+                            type="search"
+                            name="q"
+                            value="{{ request('q') }}"
+                            placeholder="Rechercher un produit ou une référence..."
+                            class="w-full bg-transparent py-2.5 sm:py-3 text-sm text-[#1d2939] placeholder-[#98a2b3] focus:outline-none"
+                        />
+
+                        {{-- Bouton Rechercher sombre --}}
+                        <button
+                            type="submit"
+                            class="shrink-0 rounded-xl bg-[#0f172a] px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-medium text-white shadow-sm hover:bg-[#1e293b] active:scale-[0.99] transition-all"
+                        >
+                            Rechercher
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {{-- Espace réservé bas pour l'équilibre de composition --}}
+            <div class="hidden lg:block h-6" aria-hidden="true"></div>
+        </div>
     </section>
 @endsection
