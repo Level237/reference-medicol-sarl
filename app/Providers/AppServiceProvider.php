@@ -9,6 +9,7 @@ use App\Models\QuoteRequest;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -29,6 +30,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('partials.header', function (RenderedView $view): void {
+            if (! Schema::hasTable('categories')) {
+                $view->with('searchCategories', collect());
+
+                return;
+            }
+
+            $view->with('searchCategories', Category::query()
+                ->where('is_published', true)
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get());
+        });
+
         View::composer(['admin.layout', 'admin.dashboard'], function (RenderedView $view): void {
             $admin = auth()->user();
 

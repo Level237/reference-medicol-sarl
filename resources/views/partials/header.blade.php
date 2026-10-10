@@ -106,22 +106,29 @@
 
     {{-- Barre de recherche déroulante --}}
     <div id="search-drawer" class="hidden border-t border-[#e4e7ec] bg-[#f8fafc] px-4 py-3 sm:px-6 lg:px-8">
-        <form action="{{ route('home') }}" method="GET" class="max-w-2xl mx-auto flex items-center gap-2">
-            <div class="relative flex-1">
+        <form action="{{ route('home') }}#catalogue" method="GET" class="mx-auto flex max-w-2xl flex-col gap-2 sm:flex-row sm:items-stretch">
+            <x-products.category-select
+                :categories="$searchCategories ?? collect()"
+                :selectedCategory="request('category', '')"
+                id="header-category-select"
+                class="sm:w-48 shrink-0"
+            />
+
+            <div class="relative min-w-0 flex-1">
                 <input
                     type="search"
                     name="q"
                     value="{{ request('q') }}"
-                    placeholder="Rechercher un produit, référence, équipement médical..."
+                    placeholder="Produit ou référence..."
                     class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#98a2b3] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
                 />
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
             </div>
             <button
                 type="submit"
-                class="rounded-lg bg-[#029e55] px-4 py-2 text-sm font-medium text-white hover:bg-[#028547] transition-colors"
+                class="shrink-0 rounded-lg bg-[#029e55] px-4 py-2 text-sm font-medium text-white hover:bg-[#028547] transition-colors"
             >
                 Chercher
             </button>
