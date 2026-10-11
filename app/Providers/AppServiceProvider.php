@@ -67,6 +67,26 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        RateLimiter::for('quotes', function (Request $request) {
+            return Limit::perMinute(5)
+                ->by((string) $request->ip())
+                ->response(function () {
+                    return redirect()->back()->withErrors([
+                        'message' => 'Trop de demandes. Réessayez dans une minute.',
+                    ])->withInput();
+                });
+        });
+
+        RateLimiter::for('quote-track', function (Request $request) {
+            return Limit::perMinute(20)
+                ->by((string) $request->ip())
+                ->response(function () {
+                    return redirect()->route('quotes.track')->withErrors([
+                        'reference' => 'Trop de consultations. Réessayez dans une minute.',
+                    ]);
+                });
+        });
+
         RateLimiter::for('access', function (Request $request) {
             $email = Str::transliterate(Str::lower((string) $request->input('email')));
 

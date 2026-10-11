@@ -67,7 +67,7 @@
 
             {{-- Bouton Panier / Devis avec compteur --}}
             <a
-                href="{{ route('home') }}#devis"
+                href="{{ route('cart.index') }}"
                 id="header-cart-btn"
                 class="relative flex items-center justify-center rounded-lg p-2.5 text-[#1d2939] transition-colors hover:bg-[#f2f4f7] hover:text-[#029e55]"
                 aria-label="Voir la sélection pour devis"
@@ -93,8 +93,23 @@
             </a>
         </div>
 
-        {{-- Mobile Hamburger + Search --}}
-        <div class="flex items-center gap-2 md:hidden">
+        {{-- Mobile Hamburger + Search + Cart --}}
+        <div class="flex items-center gap-1 sm:gap-2 md:hidden">
+            <a
+                href="{{ route('cart.index') }}"
+                class="relative p-2 text-[#1d2939] hover:bg-[#f2f4f7] rounded-lg"
+                aria-label="Voir le panier de devis"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z" />
+                </svg>
+                <span
+                    class="mobile-cart-badge {{ ($cartCount ?? 0) > 0 ? '' : 'hidden' }} absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#029e55] px-1 text-[10px] font-bold text-white shadow-xs"
+                >
+                    {{ $cartCount ?? 0 }}
+                </span>
+            </a>
+
             <button
                 type="button"
                 id="mobile-search-btn"

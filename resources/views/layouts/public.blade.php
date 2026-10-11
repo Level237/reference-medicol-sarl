@@ -8,11 +8,11 @@
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-full bg-white font-sans text-dark antialiased">
+    <body class="flex min-h-screen flex-col bg-white font-sans text-dark antialiased">
         @include('partials.topbar')
         @include('partials.header')
 
-        <main id="contenu">
+        <main id="contenu" class="flex-1">
             @yield('content')
         </main>
 

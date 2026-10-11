@@ -14,6 +14,7 @@ class CartService
      *     name: string,
      *     slug: string,
      *     reference: ?string,
+     *     summary: ?string,
      *     price: ?string,
      *     quantity: int,
      *     image: ?string,
@@ -37,6 +38,7 @@ class CartService
             'name' => $product->name,
             'slug' => $product->slug,
             'reference' => $product->reference,
+            'summary' => $product->summary,
             'price' => $product->effectivePrice(),
             'quantity' => $newQty,
             'image' => $product->coverImage?->path ?? $product->meta_image,
@@ -74,6 +76,32 @@ class CartService
         }
 
         return $total;
+    }
+
+    public function hasPricedItems(): bool
+    {
+        foreach ($this->items() as $item) {
+            if (! empty($item['price'])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function totalAmount(): ?float
+    {
+        $hasAnyPrice = false;
+        $total = 0.0;
+
+        foreach ($this->items() as $item) {
+            if (! empty($item['price'])) {
+                $hasAnyPrice = true;
+                $total += ((float) $item['price']) * ((int) ($item['quantity'] ?? 1));
+            }
+        }
+
+        return $hasAnyPrice ? $total : null;
     }
 
     public function clear(): void

@@ -93,4 +93,59 @@ class QuoteRequest extends Model
             default => 'bg-[#f79009]',
         };
     }
+
+    /**
+     * Avancement public : trois étapes avec libellé et état pour la timeline.
+     *
+     * @return list<array{number: int, label: string, state: string, subtext: string}>
+     */
+    public function trackingSteps(): array
+    {
+        $createdLabel = $this->created_at
+            ? $this->created_at->locale('fr')->translatedFormat('d M Y')
+            : 'Reçue';
+
+        return match ($this->status) {
+            self::STATUS_PROCESSING => [
+                ['number' => 1, 'label' => 'Demande reçue', 'state' => 'done', 'subtext' => $createdLabel],
+                ['number' => 2, 'label' => 'Étude du besoin', 'state' => 'current', 'subtext' => 'En cours'],
+                ['number' => 3, 'label' => 'Proposition de devis', 'state' => 'upcoming', 'subtext' => 'À venir'],
+            ],
+            self::STATUS_PROCESSED => [
+                ['number' => 1, 'label' => 'Demande reçue', 'state' => 'done', 'subtext' => $createdLabel],
+                ['number' => 2, 'label' => 'Étude du besoin', 'state' => 'done', 'subtext' => 'Terminée'],
+                ['number' => 3, 'label' => 'Proposition de devis', 'state' => 'done', 'subtext' => 'Prête'],
+            ],
+            self::STATUS_REJECTED => [
+                ['number' => 1, 'label' => 'Demande reçue', 'state' => 'done', 'subtext' => $createdLabel],
+                ['number' => 2, 'label' => 'Étude du besoin', 'state' => 'done', 'subtext' => 'Sans suite'],
+                ['number' => 3, 'label' => 'Proposition de devis', 'state' => 'cancelled', 'subtext' => 'Non retenue'],
+            ],
+            default => [
+                ['number' => 1, 'label' => 'Demande reçue', 'state' => 'done', 'subtext' => $createdLabel],
+                ['number' => 2, 'label' => 'Étude du besoin', 'state' => 'upcoming', 'subtext' => 'À venir'],
+                ['number' => 3, 'label' => 'Proposition de devis', 'state' => 'upcoming', 'subtext' => 'À venir'],
+            ],
+        };
+    }
+
+    public function trackingStatusTitle(): string
+    {
+        return match ($this->status) {
+            self::STATUS_PROCESSING => 'En cours d\'étude',
+            self::STATUS_PROCESSED => 'Proposition de devis prête',
+            self::STATUS_REJECTED => 'Demande sans suite',
+            default => 'Demande reçue',
+        };
+    }
+
+    public function trackingSummary(): string
+    {
+        return match ($this->status) {
+            self::STATUS_PROCESSING => 'Votre demande est actuellement en cours d\'étude par notre équipe.',
+            self::STATUS_PROCESSED => 'Notre proposition de devis a été préparée et vous a été transmise.',
+            self::STATUS_REJECTED => 'Cette demande n\'a pas pu être retenue. Contactez notre équipe pour plus de détails.',
+            default => 'Notre équipe a bien reçu votre demande et prépare l\'étude de vos besoins.',
+        };
+    }
 }
