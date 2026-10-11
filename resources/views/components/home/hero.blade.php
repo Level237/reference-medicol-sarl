@@ -64,7 +64,12 @@
 
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-stretch rounded-2xl bg-white p-1.5 sm:p-2 shadow-lg shadow-black/5 ring-1 ring-[#e4e7ec] focus-within:ring-2 focus-within:ring-[#029e55] transition-all">
                     {{-- Select catégorie (peu encombrant) --}}
-                   
+                    <x-products.category-select
+                        :categories="$categories"
+                        :selectedCategory="$selectedCategory"
+                        id="hero-category-select"
+                        class="sm:w-[11.5rem] shrink-0 [&_select]:rounded-xl sm:[&_select]:rounded-lg sm:[&_select]:border-0 sm:[&_select]:bg-[#f8fafc] sm:[&_select]:ring-1 sm:[&_select]:ring-[#e4e7ec]"
+                    />
 
                     {{-- Champ recherche + bouton --}}
                     <div class="flex min-w-0 flex-1 items-center gap-1">

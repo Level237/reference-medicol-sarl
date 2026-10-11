@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::view('/a-propos', 'about')->name('about');
+
 Route::middleware('guest')->group(function () {
     Route::get(config('access.path'), [SessionController::class, 'create'])->name('access.create');
     Route::post(config('access.path'), [SessionController::class, 'store'])
