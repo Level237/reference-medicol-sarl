@@ -31,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('partials.header', function (RenderedView $view): void {
+            $cartService = app(\App\Services\CartService::class);
+            $view->with('cartCount', $cartService->count());
+
             if (! Schema::hasTable('categories')) {
                 $view->with('searchCategories', collect());
 

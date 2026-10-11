@@ -16,7 +16,7 @@
     </button>
 
     {{-- Zone Image du produit --}}
-    <div class="relative flex items-center justify-center overflow-hidden rounded-xl bg-[#f8fafc] {{ $view === 'list' ? 'h-40 w-40 shrink-0' : 'h-48 w-full' }} mb-4 {{ $view === 'list' ? 'sm:mb-0' : '' }}">
+    <a href="{{ route('products.show', $product->slug) }}" class="relative flex items-center justify-center overflow-hidden rounded-xl bg-[#f8fafc] {{ $view === 'list' ? 'h-40 w-40 shrink-0' : 'h-48 w-full' }} mb-4 {{ $view === 'list' ? 'sm:mb-0' : '' }}">
         @if($product->coverImage)
             <img
                 src="{{ asset('storage/' . $product->coverImage->path) }}"
@@ -53,7 +53,7 @@
                 En stock
             </span>
         @endif
-    </div>
+    </a>
 
     {{-- Informations du produit --}}
     <div class="flex flex-1 flex-col justify-between {{ $view === 'list' ? 'sm:py-1' : '' }}">
@@ -65,7 +65,9 @@
 
             {{-- Nom du produit --}}
             <h3 class="mt-1 text-base font-bold text-[#1d2939] group-hover:text-[#029e55] transition-colors line-clamp-2">
-                {{ $product->name }}
+                <a href="{{ route('products.show', $product->slug) }}">
+                    {{ $product->name }}
+                </a>
             </h3>
 
             {{-- Résumé ou référence si présent --}}
@@ -105,8 +107,7 @@
 
             {{-- Bouton d'action Voir le produit --}}
             <a
-                href="#devis"
-                onclick="if(typeof openQuoteModal === 'function') { openQuoteModal('{{ addslashes($product->name) }}', '{{ $product->id }}'); return false; }"
+                href="{{ route('products.show', $product->slug) }}"
                 class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#0f172a] px-4 py-2.5 text-center text-xs sm:text-sm font-medium text-white shadow-xs hover:bg-[#1e293b] active:scale-[0.99] transition-all"
             >
                 <span>Voir le produit</span>

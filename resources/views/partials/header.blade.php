@@ -51,7 +51,7 @@
             </a>
         </nav>
 
-        {{-- Actions Desktop : Recherche + CTA Demander un devis --}}
+        {{-- Actions Desktop : Recherche + Panier Devis + CTA Demander un devis --}}
         <div class="hidden md:flex items-center gap-3">
             {{-- Bouton Recherche --}}
             <button
@@ -65,9 +65,28 @@
                 </svg>
             </button>
 
+            {{-- Bouton Panier / Devis avec compteur --}}
+            <a
+                href="{{ route('home') }}#devis"
+                id="header-cart-btn"
+                class="relative flex items-center justify-center rounded-lg p-2.5 text-[#1d2939] transition-colors hover:bg-[#f2f4f7] hover:text-[#029e55]"
+                aria-label="Voir la sélection pour devis"
+                title="Articles dans votre demande de devis"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z" />
+                </svg>
+                <span
+                    id="cart-counter-badge"
+                    class="{{ ($cartCount ?? 0) > 0 ? '' : 'hidden' }} absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#029e55] px-1 text-[10px] font-bold text-white shadow-xs"
+                >
+                    {{ $cartCount ?? 0 }}
+                </span>
+            </a>
+
             {{-- Bouton Demander un devis (conforme maquette sombre) --}}
             <a
-                href="#devis"
+                href="{{ route('home') }}#devis"
                 class="inline-flex items-center justify-center rounded-lg bg-[#0f172a] px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#1e293b] active:scale-[0.99] transition-all"
             >
                 Demander un devis
