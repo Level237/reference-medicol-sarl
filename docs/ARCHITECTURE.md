@@ -36,6 +36,8 @@ Suivi public : `GET /devis/suivi` (`quotes.track`, même contrôleur public). La
 
 Messages de contact admin : sous le même préfixe (`ContactMessageController`, `admin.messages.*`). Table `contact_messages`. Liste paginée avec filtres par état de lecture (non lus, lus) et recherche textuelle. Panneau latéral (slide-over modal) interactif Alpine.js pour l'aperçu instantané en temps réel, bascule lu/non lu en AJAX, réponse e-mail directe (`mailto:`) et notes internes. Visible également sur le tableau de bord et dans la barre latérale avec badge du nombre de messages non lus.
 
+Formulaire public : `GET /contact` et `POST /contact` (`contact`, `contact.store`, `ContactController`). Nom, e-mail et message sont obligatoires. Établissement et téléphone sont facultatifs. Le message est enregistré non lu. La confirmation est renvoyée tout de suite. L'e-mail en texte brut vers l'adresse officielle part ensuite ; s'il échoue, le message reste en base. Cinq envois par minute et par adresse IP (`contact`).
+
 ## Conventions
 - Une page = une route = une vue Blade dédiée.
 - Pas de logique métier dans les vues : ce qui calcule ou décide vit dans

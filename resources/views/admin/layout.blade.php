@@ -8,7 +8,7 @@
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen bg-[#fcfcfd] font-sans text-dark antialiased">
+    <body data-admin class="min-h-screen bg-[#fcfcfd] font-sans text-dark antialiased" x-data>
         <div class="min-h-screen lg:grid lg:grid-cols-[260px_minmax(0,1fr)]">
             <!-- Sidebar Desktop & Drawer Mobile -->
             @include('admin.partials.sidebar')

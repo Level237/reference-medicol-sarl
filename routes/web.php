@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuoteRequestController;
@@ -26,6 +27,11 @@ Route::get('/devis/confirmation', [QuoteRequestController::class, 'sent'])->name
 Route::match(['GET', 'POST'], '/devis/suivi', [QuoteRequestController::class, 'track'])
     ->middleware('throttle:quote-track')
     ->name('quotes.track');
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:contact')
+    ->name('contact.store');
 
 Route::middleware('guest')->group(function () {
     Route::get(config('access.path'), [SessionController::class, 'create'])->name('access.create');

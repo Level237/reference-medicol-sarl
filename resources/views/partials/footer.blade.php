@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}#contact" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
+                        <a href="{{ route('contact') }}" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
                             Contact
                         </a>
                     </li>

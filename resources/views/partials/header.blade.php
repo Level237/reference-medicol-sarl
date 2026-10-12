@@ -44,8 +44,8 @@
             </a>
 
             <a
-                href="#contact"
-                class="text-sm font-medium text-[#667085] hover:text-[#1d2939] transition-colors"
+                href="{{ route('contact') }}"
+                class="text-sm transition-colors {{ request()->routeIs('contact') ? 'font-semibold text-[#029e55]' : 'font-medium text-[#667085] hover:text-[#1d2939]' }}"
             >
                 Contact
             </a>
@@ -194,8 +194,8 @@
                 À propos
             </a>
             <a
-                href="#contact"
-                class="rounded-lg px-3 py-2 text-base font-medium text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]"
+                href="{{ route('contact') }}"
+                class="rounded-lg px-3 py-2 text-base font-medium {{ request()->routeIs('contact') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
             >
                 Contact
             </a>

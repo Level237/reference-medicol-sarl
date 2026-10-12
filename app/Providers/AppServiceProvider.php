@@ -87,6 +87,16 @@ class AppServiceProvider extends ServiceProvider
                 });
         });
 
+        RateLimiter::for('contact', function (Request $request) {
+            return Limit::perMinute(5)
+                ->by((string) $request->ip())
+                ->response(function () {
+                    return redirect()->route('contact')->withErrors([
+                        'message' => 'Trop de messages. Réessayez dans une minute.',
+                    ])->withInput();
+                });
+        });
+
         RateLimiter::for('access', function (Request $request) {
             $email = Str::transliterate(Str::lower((string) $request->input('email')));
 
