@@ -17,9 +17,12 @@ class PublicContactTest extends TestCase
         $this->get(route('contact'))
             ->assertOk()
             ->assertSee('Contactez-nous', false)
-            ->assertSee('assets/images/hero-about.jpg', false)
+            ->assertSee('assets/images/about/hopital.jpg', false)
+            ->assertSee('Numéro WhatsApp', false)
             ->assertSee('Envoyer le message', false)
-            ->assertSee('Établissement', false)
+            ->assertSee('Adresse', false)
+            ->assertSee('contact-map', false)
+            ->assertDontSee('Signalez un problème', false)
             ->assertSee('+237 699 850 500', false)
             ->assertSee('jacquesmaud@referencemedicosarl.com', false);
     }

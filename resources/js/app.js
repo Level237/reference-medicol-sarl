@@ -11,3 +11,7 @@ const startAdminPreview = () => {
 };
 
 startAdminPreview();
+
+if (document.getElementById('contact-map')) {
+    import('./contact-map.js');
+}

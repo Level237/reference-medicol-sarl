@@ -28,7 +28,7 @@
                             autocomplete="off"
                             spellcheck="false"
                             placeholder="DEV-EXEMPLE"
-                            class="rounded-xl border border-[#e4e7ec] bg-white px-4 py-3 text-sm text-[#1d2939] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[#98a2b3] focus:border-[#029e55] focus:ring-2 focus:ring-[#029e55]/20"
+                            class="rounded-xl border border-[#e4e7ec] bg-white px-4 py-3 text-sm text-[#1d2939] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[#667085] focus:border-[#029e55] focus:ring-2 focus:ring-[#029e55]/20"
                         >
                     </div>
 
@@ -42,7 +42,7 @@
                             required
                             autocomplete="email"
                             placeholder="contact@exemple.cm"
-                            class="rounded-xl border border-[#e4e7ec] bg-white px-4 py-3 text-sm text-[#1d2939] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[#98a2b3] focus:border-[#029e55] focus:ring-2 focus:ring-[#029e55]/20"
+                            class="rounded-xl border border-[#e4e7ec] bg-white px-4 py-3 text-sm text-[#1d2939] outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-[#667085] focus:border-[#029e55] focus:ring-2 focus:ring-[#029e55]/20"
                         >
                     </div>
 
@@ -117,7 +117,7 @@
                                 autocomplete="off"
                                 spellcheck="false"
                                 placeholder="DEV-EXEMPLE"
-                                class="mt-0.5 w-full bg-transparent text-sm font-semibold text-[#1d2939] placeholder:font-normal placeholder:text-[#98a2b3] outline-none"
+                                class="mt-0.5 w-full bg-transparent text-sm font-semibold text-[#1d2939] placeholder:font-normal placeholder:text-[#667085] outline-none"
                             >
                         </div>
 
@@ -133,7 +133,7 @@
                                 required
                                 autocomplete="email"
                                 placeholder="contact@exemple.cm"
-                                class="mt-0.5 w-full bg-transparent text-sm font-semibold text-[#1d2939] placeholder:font-normal placeholder:text-[#98a2b3] outline-none"
+                                class="mt-0.5 w-full bg-transparent text-sm font-semibold text-[#1d2939] placeholder:font-normal placeholder:text-[#667085] outline-none"
                             >
                         </div>
 

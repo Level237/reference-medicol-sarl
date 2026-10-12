@@ -4,7 +4,7 @@ Nom : {{ $message->name }}
 @endif
 E-mail : {{ $message->email }}
 @if ($message->phone)
-Téléphone : {{ $message->phone }}
+WhatsApp : {{ $message->phone }}
 @endif
 
 {{ $message->message }}
