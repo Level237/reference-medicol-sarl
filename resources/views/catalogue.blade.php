@@ -23,7 +23,6 @@
     }
 
     $hasNarrowingFilters = filled($q ?? null)
-        || filled($selectedBrand ?? null)
         || ($inStock ?? false)
         || filled($priceType ?? null)
         || filled($priceMin ?? null)
@@ -49,14 +48,12 @@
     {{-- Section Produits & Filtres --}}
     <section id="catalogue" class="border-t border-[#e4e7ec] bg-[#f8fafc]/50 py-10 sm:py-14">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-8">
+            <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-[16.5rem_minmax(0,1fr)] lg:gap-10">
                 {{-- Sidebar Filtres à gauche (Desktop lg+) --}}
-                <aside class="hidden lg:block lg:col-span-1">
+                <aside class="hidden lg:sticky lg:top-24 lg:block">
                     <x-products.filter-sidebar
                         :categories="$categories"
-                        :brands="$brands"
                         :selectedCategory="$selectedCategory"
-                        :selectedBrand="$selectedBrand"
                         :inStock="$inStock"
                         :priceType="$priceType"
                         :priceMin="$priceMin"
@@ -65,7 +62,7 @@
                 </aside>
 
                 {{-- Contenu Catalogue à droite : Toolbar, Grille & Pagination --}}
-                <div class="lg:col-span-3">
+                <div class="min-w-0">
                     <x-products.grid
                         :products="$products"
                         :sort="$sort"
@@ -79,9 +76,7 @@
     {{-- Modal Filtres Mobile --}}
     <x-products.filter-mobile-modal
         :categories="$categories"
-        :brands="$brands"
         :selectedCategory="$selectedCategory"
-        :selectedBrand="$selectedBrand"
         :inStock="$inStock"
         :priceType="$priceType"
         :priceMin="$priceMin"

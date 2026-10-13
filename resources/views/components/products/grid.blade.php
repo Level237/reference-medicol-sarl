@@ -7,27 +7,24 @@
 @php
     $activeCount = 0;
     if (!empty(request('category'))) $activeCount++;
-    if (!empty(request('brand'))) $activeCount++;
     if (request()->boolean('in_stock')) $activeCount++;
     if (!empty(request('price_type')) || request()->filled('price_min') || request()->filled('price_max')) $activeCount++;
 @endphp
 
 <div>
     {{-- Barre d'outils supérieure --}}
-    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mb-6 flex flex-col gap-3 rounded-2xl border border-[#e4e7ec] bg-white p-3 sm:flex-row sm:items-center sm:justify-between sm:px-4">
         {{-- Compteur de produits --}}
-        <div>
-            <p class="text-sm font-medium text-[#667085]">
-                <span class="font-bold text-[#1d2939]">{{ $products->total() }}</span>
-                produit{{ $products->total() > 1 ? 's' : '' }}
-                @if(request('q'))
-                    pour <span class="font-semibold text-[#029e55]">« {{ request('q') }} »</span>
-                @endif
-            </p>
-        </div>
+        <p class="text-sm font-medium text-[#667085]">
+            <span class="font-bold text-[#1d2939]">{{ $products->total() }}</span>
+            produit{{ $products->total() > 1 ? 's' : '' }}
+            @if(request('q'))
+                pour <span class="font-semibold text-[#029e55]">« {{ request('q') }} »</span>
+            @endif
+        </p>
 
-        {{-- Tri & Bascule Grille/Liste & Bouton Filtres Mobile --}}
-        <div class="flex items-center gap-2.5 sm:gap-3 flex-wrap justify-between sm:justify-end w-full sm:w-auto">
+        {{-- Tri, bascule grille/liste et filtres mobile --}}
+        <div class="flex flex-wrap items-center gap-2">
             {{-- Bouton Filtres Mobile (visible uniquement < lg) --}}
             <button
                 type="button"
@@ -48,7 +45,7 @@
 
             {{-- Dropdown Trier par --}}
             <div class="flex items-center gap-2">
-                <span class="text-xs sm:text-sm font-medium text-[#667085] whitespace-nowrap">Trier par</span>
+                <span class="sr-only text-sm font-medium text-[#667085] sm:not-sr-only sm:whitespace-nowrap">Trier par</span>
                 <div class="relative">
                     <select
                         onchange="const url = new URL(window.location.href); url.searchParams.set('sort', this.value); window.location.href = url.toString();"
@@ -63,37 +60,35 @@
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-[#667085]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7 7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
                 </div>
             </div>
 
             {{-- Boutons Vue Grille / Liste --}}
-            <div class="hidden sm:flex items-center rounded-xl border border-[#e4e7ec] bg-white p-1 shadow-xs">
-                {{-- Bouton Grille --}}
-                <button
-                    type="button"
-                    onclick="const url = new URL(window.location.href); url.searchParams.set('view', 'grid'); window.location.href = url.toString();"
-                    class="rounded-lg p-1.5 transition-colors {{ $view !== 'list' ? 'bg-[#0f172a] text-white' : 'text-[#667085] hover:text-[#1d2939]' }}"
+            <div class="ml-auto flex shrink-0 items-center rounded-xl border border-[#e4e7ec] bg-white p-1 sm:ml-0" role="group" aria-label="Mode d'affichage">
+                <a
+                    href="{{ request()->fullUrlWithQuery(['view' => 'grid']) }}#catalogue"
+                    class="rounded-lg p-1.5 transition-colors {{ $view !== 'list' ? 'bg-[#029e55] text-white' : 'text-[#667085] hover:text-[#1d2939]' }}"
                     aria-label="Affichage en grille"
+                    @if($view !== 'list') aria-current="true" @endif
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
                     </svg>
-                </button>
+                </a>
 
-                {{-- Bouton Liste --}}
-                <button
-                    type="button"
-                    onclick="const url = new URL(window.location.href); url.searchParams.set('view', 'list'); window.location.href = url.toString();"
-                    class="rounded-lg p-1.5 transition-colors {{ $view === 'list' ? 'bg-[#0f172a] text-white' : 'text-[#667085] hover:text-[#1d2939]' }}"
+                <a
+                    href="{{ request()->fullUrlWithQuery(['view' => 'list']) }}#catalogue"
+                    class="rounded-lg p-1.5 transition-colors {{ $view === 'list' ? 'bg-[#029e55] text-white' : 'text-[#667085] hover:text-[#1d2939]' }}"
                     aria-label="Affichage en liste"
+                    @if($view === 'list') aria-current="true" @endif
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
     </div>

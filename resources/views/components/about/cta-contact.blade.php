@@ -19,7 +19,7 @@
         </p>
         <a
             href="{{ $contactUrl }}"
-            class="mt-6 inline-flex items-center justify-center rounded-xl bg-[#029e55] px-6 py-3.5 text-sm font-semibold text-white transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#028347] active:scale-[0.98]"
+            class="mt-6 inline-flex items-center justify-center rounded-xl bg-[#029e55] px-6 py-3.5 text-sm font-semibold text-white transition-[transform,background-color,color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white hover:text-[#029e55] active:scale-[0.98]"
         >
             Contactez-nous
         </a>

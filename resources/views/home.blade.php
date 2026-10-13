@@ -13,6 +13,7 @@
         :categories="$categories"
         breadcrumb=""
         :searchAction="route('catalogue')"
+        :showCategorySelect="false"
     />
 
     {{-- 2. Familles d'équipements : 6 tuiles directes vers le catalogue --}}

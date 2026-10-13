@@ -16,15 +16,12 @@ class CatalogueController extends Controller
     {
         $q = trim((string) $request->query('q', ''));
         $selectedCategory = trim((string) $request->query('category', ''));
-        $selectedBrand = trim((string) $request->query('brand', ''));
         $inStock = $request->boolean('in_stock');
         $priceType = trim((string) $request->query('price_type', ''));
         $priceMin = $request->query('price_min');
         $priceMax = $request->query('price_max');
         $sort = trim((string) $request->query('sort', 'relevance'));
         $view = $request->query('view', 'grid') === 'list' ? 'list' : 'grid';
-
-        $defaultBrands = ['Mindray', 'Omron', 'Philips', 'GE Healthcare', 'Welch Allyn'];
 
         try {
             if (! Schema::hasTable('categories') || ! Schema::hasTable('products')) {
@@ -37,22 +34,6 @@ class CatalogueController extends Controller
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get();
-
-            $extractedBrands = Product::query()
-                ->where('is_published', true)
-                ->whereNotNull('specifications')
-                ->get()
-                ->map(function (Product $product) {
-                    $specs = $product->specifications ?? [];
-
-                    return $specs['Marque'] ?? $specs['marque'] ?? $specs['Brand'] ?? $specs['brand'] ?? null;
-                })
-                ->filter()
-                ->unique()
-                ->values()
-                ->all();
-
-            $brands = ! empty($extractedBrands) ? $extractedBrands : $defaultBrands;
 
             $productsQuery = Product::query()
                 ->where('is_published', true)
@@ -70,16 +51,6 @@ class CatalogueController extends Controller
                 $productsQuery->whereHas('category', function ($sub) use ($selectedCategory) {
                     $sub->where('slug', $selectedCategory)
                         ->orWhere('id', $selectedCategory);
-                });
-            }
-
-            if ($selectedBrand !== '') {
-                $productsQuery->where(function ($sub) use ($selectedBrand) {
-                    $sub->where('specifications->Marque', $selectedBrand)
-                        ->orWhere('specifications->marque', $selectedBrand)
-                        ->orWhere('specifications->Brand', $selectedBrand)
-                        ->orWhere('specifications->brand', $selectedBrand)
-                        ->orWhere('name', 'like', "%{$selectedBrand}%");
                 });
             }
 
@@ -119,7 +90,6 @@ class CatalogueController extends Controller
             $products = $productsQuery->paginate(12)->withQueryString();
         } catch (Throwable) {
             $categories = collect();
-            $brands = $defaultBrands;
             $products = new LengthAwarePaginator([], 0, 12, 1, [
                 'path' => $request->url(),
                 'query' => $request->query(),
@@ -129,10 +99,8 @@ class CatalogueController extends Controller
         return view('catalogue', compact(
             'products',
             'categories',
-            'brands',
             'q',
             'selectedCategory',
-            'selectedBrand',
             'inStock',
             'priceType',
             'priceMin',

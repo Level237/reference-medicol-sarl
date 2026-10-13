@@ -1,28 +1,27 @@
 {{-- TopBar de contact en couleur primaire --}}
-<div class="bg-[#029e55] text-white text-xs border-b border-[#028547]">
+<div class="bg-[#029e55] text-xs text-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
         {{-- Localisation à gauche --}}
         <div class="flex items-center gap-2 text-white/90">
-            <span class="font-medium">Matériel Médical</span>
-            <span class="text-white/50" aria-hidden="true">•</span>
+            <span class="hidden font-medium sm:inline">Matériel Médical</span>
+            <span class="hidden text-white/50 sm:inline" aria-hidden="true">•</span>
             <span>Douala, Cameroun</span>
         </div>
 
-        {{-- Contact à droite : Téléphone et Email --}}
+        {{-- Contact à droite : téléphone et suivi de devis --}}
         <div class="flex items-center gap-4 sm:gap-6">
-            <a href="tel:+237699850500" class="inline-flex items-center gap-1.5 text-white/95 hover:text-white transition-colors">
+            <a href="tel:+237699850500" class="hidden items-center gap-1.5 text-white/95 transition-colors hover:text-white sm:inline-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 shrink-0 text-white/80" aria-hidden="true">
                     <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd" />
                 </svg>
                 <span class="font-medium">+237 699 850 500</span>
             </a>
 
-            <a href="mailto:jacquesmaud@referencemedicosarl.com" class="hidden sm:inline-flex items-center gap-1.5 text-white/95 hover:text-white transition-colors">
+            <a href="{{ route('quotes.track') }}" class="inline-flex items-center gap-1.5 text-white/95 transition-colors hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 shrink-0 text-white/80" aria-hidden="true">
-                    <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />
-                    <path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z" />
+                    <path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 0 0 3 3.5v13A1.5 1.5 0 0 0 4.5 18h11a1.5 1.5 0 0 0 1.5-1.5V7.621a1.5 1.5 0 0 0-.44-1.06l-4.12-4.122A1.5 1.5 0 0 0 11.378 2H4.5Zm2.25 8.5a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm0 3a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z" clip-rule="evenodd" />
                 </svg>
-                <span class="truncate">jacquesmaud@referencemedicosarl.com</span>
+                <span>Suivre mon devis</span>
             </a>
         </div>
     </div>

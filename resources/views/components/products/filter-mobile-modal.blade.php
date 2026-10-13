@@ -1,8 +1,6 @@
 @props([
     'categories' => [],
-    'brands' => [],
     'selectedCategory' => '',
-    'selectedBrand' => '',
     'inStock' => false,
     'priceType' => '',
     'priceMin' => null,
@@ -13,7 +11,6 @@
 @php
     $activeCount = 0;
     if (!empty(request('category'))) $activeCount++;
-    if (!empty(request('brand'))) $activeCount++;
     if (request()->boolean('in_stock')) $activeCount++;
     if (!empty(request('price_type')) || request()->filled('price_min') || request()->filled('price_max')) $activeCount++;
     $hasActiveFilters = $activeCount > 0 || request()->filled('q');
@@ -106,43 +103,12 @@
                     />
                 </div>
 
-                {{-- 2. Marque --}}
-                <details open class="group py-4">
-                    <summary class="flex w-full items-center justify-between text-left text-sm font-bold text-[#1d2939] cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                        <span>Marque</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#667085] transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7 7" />
-                        </svg>
-                    </summary>
-
-                    <div class="mt-3">
-                        <div class="relative">
-                            <select
-                                name="brand"
-                                class="w-full appearance-none rounded-xl border border-[#e4e7ec] bg-[#fcfcfd] py-3 pl-3.5 pr-10 text-sm text-[#1d2939] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
-                            >
-                                <option value="">Toutes les marques</option>
-                                @foreach($brands as $brand)
-                                    <option value="{{ $brand }}" {{ $selectedBrand === $brand ? 'selected' : '' }}>
-                                        {{ $brand }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-[#667085]">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </details>
-
-                {{-- 3. Disponibilité --}}
+                {{-- 2. Disponibilité --}}
                 <details open class="group py-4">
                     <summary class="flex w-full items-center justify-between text-left text-sm font-bold text-[#1d2939] cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                         <span>Disponibilité</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#667085] transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7 7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
 
@@ -167,7 +133,7 @@
                     <summary class="flex w-full items-center justify-between text-left text-sm font-bold text-[#1d2939] cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                         <span>Prix</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#667085] transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7 7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
 

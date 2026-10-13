@@ -35,7 +35,11 @@ class PublicCatalogueTest extends TestCase
             ->assertSee('Filtres', false)
             ->assertSee('Catégories', false)
             ->assertSee('Disponibilité', false)
-            ->assertSee('Prix', false);
+            ->assertSee('Prix', false)
+            ->assertSee('Affichage en grille', false)
+            ->assertSee('Affichage en liste', false)
+            ->assertDontSee('Toutes les marques', false)
+            ->assertDontSee('>Marque<', false);
     }
 
     public function test_catalogue_renders_products_and_filters_correctly(): void

@@ -57,7 +57,7 @@
             <button
                 type="button"
                 id="search-toggle-btn"
-                class="p-2.5 text-[#1d2939] hover:text-[#029e55] hover:bg-[#f2f4f7] rounded-lg transition-colors"
+                class="p-2.5 text-[#1d2939] hover:text-[#029e55] hover:bg-[#e4e7ec] rounded-lg transition-colors"
                 aria-label="Rechercher un produit ou équipement"
                 aria-haspopup="dialog"
                 aria-controls="search-modal"
@@ -72,7 +72,7 @@
             <a
                 href="{{ route('cart.index') }}"
                 id="header-cart-btn"
-                class="relative flex items-center justify-center rounded-lg p-2.5 text-[#1d2939] transition-colors hover:bg-[#f2f4f7] hover:text-[#029e55]"
+                class="relative flex items-center justify-center rounded-lg p-2.5 text-[#1d2939] transition-colors hover:bg-[#e4e7ec] hover:text-[#029e55]"
                 aria-label="Voir la sélection pour devis"
                 title="Articles dans votre demande de devis"
             >
@@ -90,7 +90,7 @@
             {{-- Bouton Demander un devis (conforme maquette sombre) --}}
             <a
                 href="{{ route('quotes.create') }}"
-                class="inline-flex items-center justify-center rounded-lg bg-[#0f172a] px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#1e293b] active:scale-[0.99] transition-all"
+                class="inline-flex items-center justify-center rounded-lg bg-[#029e55] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-[#0f172a] active:scale-[0.99]"
             >
                 Demander un devis
             </a>
@@ -100,7 +100,7 @@
         <div class="flex shrink-0 items-center gap-1 md:hidden">
             <a
                 href="{{ route('cart.index') }}"
-                class="relative rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
+                class="relative rounded-lg p-2 text-[#1d2939] hover:bg-[#e4e7ec]"
                 aria-label="Voir le panier de devis"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -116,7 +116,7 @@
             <button
                 type="button"
                 id="mobile-menu-btn"
-                class="rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
+                class="rounded-lg p-2 text-[#1d2939] hover:bg-[#e4e7ec]"
                 aria-label="Menu principal"
                 aria-expanded="false"
                 aria-controls="menu-mobile"
@@ -158,7 +158,7 @@
             <button
                 type="button"
                 id="mobile-menu-close"
-                class="rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
+                class="rounded-lg p-2 text-[#1d2939] hover:bg-[#e4e7ec]"
                 aria-label="Fermer le menu"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -172,7 +172,7 @@
                 <button
                     type="button"
                     id="mobile-menu-search-toggle"
-                    class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-[#1d2939] hover:bg-[#f2f4f7]"
+                    class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-[#1d2939] hover:bg-[#e4e7ec]"
                     aria-haspopup="dialog"
                     aria-controls="search-modal"
                     aria-expanded="false"
@@ -187,7 +187,7 @@
             <nav class="mt-3 flex flex-col gap-1" aria-label="Navigation">
                 <a
                     href="{{ route('catalogue') }}"
-                    class="flex items-center justify-between rounded-lg px-3 py-2.5 text-base font-semibold {{ request()->routeIs('catalogue') ? 'bg-[#029e55]/10 text-[#029e55]' : 'text-[#1d2939] hover:bg-[#f2f4f7]' }}"
+                    class="flex items-center justify-between rounded-lg px-3 py-2.5 text-base font-semibold {{ request()->routeIs('catalogue') ? 'bg-[#029e55]/10 text-[#029e55]' : 'text-[#1d2939] hover:bg-[#e4e7ec]' }}"
                 >
                     <span>Catalogue</span>
                     @if(request()->routeIs('catalogue'))
@@ -196,19 +196,19 @@
                 </a>
                 <a
                     href="{{ route('services') }}"
-                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('services') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
+                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('services') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#e4e7ec] hover:text-[#1d2939]' }}"
                 >
                     Nos services
                 </a>
                 <a
                     href="{{ route('about') }}"
-                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('about') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
+                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('about') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#e4e7ec] hover:text-[#1d2939]' }}"
                 >
                     À propos
                 </a>
                 <a
                     href="{{ route('contact') }}"
-                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('contact') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
+                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('contact') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#e4e7ec] hover:text-[#1d2939]' }}"
                 >
                     Contact
                 </a>
@@ -218,7 +218,7 @@
         <div class="shrink-0 border-t border-[#e4e7ec] p-4">
             <a
                 href="{{ route('quotes.create') }}"
-                class="flex w-full items-center justify-center rounded-lg bg-[#0f172a] px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-[#1e293b]"
+                class="flex w-full items-center justify-center rounded-lg bg-[#029e55] px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-[#0f172a]"
             >
                 Demander un devis
             </a>
@@ -236,7 +236,7 @@
         <button
             type="button"
             id="search-modal-close"
-            class="rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
+            class="rounded-lg p-2 text-[#1d2939] hover:bg-[#e4e7ec]"
             aria-label="Fermer la recherche"
         >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -269,7 +269,7 @@
 
         <button
             type="submit"
-            class="w-full rounded-lg bg-[#029e55] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#028547]"
+            class="w-full rounded-lg bg-[#029e55] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f172a]"
         >
             Chercher
         </button>

@@ -3,6 +3,7 @@
     'selectedCategory' => '',
     'breadcrumb' => '',
     'searchAction' => null,
+    'showCategorySelect' => true,
 ])
 
 @php
@@ -48,7 +49,7 @@
                     pour une santé<br>
                     meilleure demain
                 </p>
-                <div class="mt-1.5 h-0.5 w-8 bg-[#029e55] ml-auto rounded-full" aria-hidden="true"></div>
+                <div class="mt-1.5 ml-auto h-0.5 w-8 rounded-full bg-[#029e55]" aria-hidden="true"></div>
             </div>
         </div>
 
@@ -67,18 +68,15 @@
 
             {{-- Barre de recherche compacte : select catégorie + champ + bouton --}}
             <form action="{{ $action }}" method="GET" class="mt-6 sm:mt-8 max-w-xl">
-                @if(request('brand'))
-                    <input type="hidden" name="brand" value="{{ request('brand') }}">
-                @endif
-
-                <div class="flex flex-col gap-2 sm:flex-row sm:items-stretch rounded-2xl bg-white p-1.5 sm:p-2 shadow-lg shadow-black/5 ring-1 ring-[#e4e7ec] focus-within:ring-2 focus-within:ring-[#029e55] transition-all">
-                    {{-- Select catégorie (peu encombrant) --}}
-                    <x-products.category-select
-                        :categories="$categories"
-                        :selectedCategory="$selectedCategory"
-                        id="hero-category-select"
-                        class="sm:w-[11.5rem] shrink-0 [&_select]:rounded-xl sm:[&_select]:rounded-lg sm:[&_select]:border-0 sm:[&_select]:bg-[#f8fafc] sm:[&_select]:ring-1 sm:[&_select]:ring-[#e4e7ec]"
-                    />
+                <div class="flex flex-col gap-2 rounded-2xl bg-white p-1.5 shadow-lg shadow-[#0f172a]/5 ring-1 ring-[#e4e7ec] transition-all focus-within:ring-2 focus-within:ring-[#029e55] sm:flex-row sm:items-stretch sm:p-2">
+                    @if($showCategorySelect)
+                        <x-products.category-select
+                            :categories="$categories"
+                            :selectedCategory="$selectedCategory"
+                            id="hero-category-select"
+                            class="sm:w-[11.5rem] shrink-0 [&_select]:rounded-xl sm:[&_select]:rounded-lg sm:[&_select]:border-0 sm:[&_select]:bg-white sm:[&_select]:ring-1 sm:[&_select]:ring-[#e4e7ec]"
+                        />
+                    @endif
 
                     {{-- Champ recherche + bouton --}}
                     <div class="flex min-w-0 flex-1 items-center gap-1">
@@ -98,7 +96,7 @@
                         <button
                             type="submit"
                             aria-label="Rechercher"
-                            class="shrink-0 rounded-xl bg-[#0f172a] px-3.5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-white shadow-sm hover:bg-[#1e293b] active:scale-[0.99] transition-all"
+                            class="shrink-0 rounded-xl bg-[#029e55] px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-[#0f172a] active:scale-[0.99] sm:px-6 sm:py-3"
                         >
                             <span class="hidden sm:inline">Rechercher</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">

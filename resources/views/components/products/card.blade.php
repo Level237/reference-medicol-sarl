@@ -1,7 +1,7 @@
 @props(['product', 'view' => 'grid'])
 
 <div
-    class="group relative flex flex-col justify-between rounded-2xl border border-[#e4e7ec] bg-white p-4 sm:p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/5 {{ $view === 'list' ? 'sm:flex-row sm:items-center sm:gap-6' : '' }}"
+    class="group relative flex rounded-2xl border border-[#e4e7ec] bg-white transition-shadow duration-200 hover:shadow-lg hover:shadow-[#0f172a]/5 {{ $view === 'list' ? 'flex-row items-stretch gap-3 p-3 sm:gap-5 sm:p-4' : 'flex-col justify-between p-4 hover:-translate-y-0.5 sm:p-5' }}"
 >
     {{-- Bouton Favoris / Signet en haut à droite --}}
     <button
@@ -16,7 +16,7 @@
     </button>
 
     {{-- Zone Image du produit --}}
-    <a href="{{ route('products.show', $product->slug) }}" class="relative flex items-center justify-center overflow-hidden rounded-xl bg-[#f8fafc] {{ $view === 'list' ? 'h-40 w-40 shrink-0' : 'h-48 w-full' }} mb-4 {{ $view === 'list' ? 'sm:mb-0' : '' }}">
+    <a href="{{ route('products.show', $product->slug) }}" class="relative flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#e4e7ec] {{ $view === 'list' ? 'h-24 w-24 sm:h-32 sm:w-32' : 'mb-4 h-48 w-full' }}">
         @if($product->coverImage)
             <img
                 src="{{ asset('storage/' . $product->coverImage->path) }}"
@@ -56,7 +56,7 @@
     </a>
 
     {{-- Informations du produit --}}
-    <div class="flex flex-1 flex-col justify-between {{ $view === 'list' ? 'sm:py-1' : '' }}">
+    <div class="flex min-w-0 flex-1 flex-col justify-between {{ $view === 'list' ? 'pr-8' : '' }}">
         <div>
             {{-- Catégorie --}}
             <span class="text-xs font-medium text-[#029e55]">
@@ -79,8 +79,8 @@
         </div>
 
         {{-- Prix & Action --}}
-        <div class="mt-4 pt-3 border-t border-[#f2f4f7]">
-            <div class="flex items-baseline justify-between mb-3">
+        <div class="mt-3 border-t border-[#e4e7ec] pt-3 {{ $view === 'list' ? 'sm:mt-4' : 'mt-4' }}">
+            <div class="mb-3 flex items-baseline justify-between gap-3">
                 @if($product->effectivePrice())
                     <div class="flex flex-col">
                         <span class="text-base font-bold text-[#1d2939]">
@@ -108,7 +108,7 @@
             {{-- Bouton d'action Voir le produit --}}
             <a
                 href="{{ route('products.show', $product->slug) }}"
-                class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#0f172a] px-4 py-2.5 text-center text-xs sm:text-sm font-medium text-white shadow-xs hover:bg-[#1e293b] active:scale-[0.99] transition-all"
+                class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#029e55] px-4 py-2.5 text-center text-xs font-medium text-white shadow-xs transition-all hover:bg-[#0f172a] active:scale-[0.99] sm:text-sm {{ $view === 'list' ? 'w-full sm:w-auto' : 'w-full' }}"
             >
                 <span>Voir le produit</span>
                 <span aria-hidden="true">&rarr;</span>
