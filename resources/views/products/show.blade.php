@@ -21,10 +21,10 @@
             <nav aria-label="Fil d'Ariane" class="flex flex-wrap items-center gap-2 text-xs text-[#667085]">
                 <a href="{{ route('home') }}" class="hover:text-[#029e55] transition-colors">Accueil</a>
                 <span class="text-[#98a2b3]" aria-hidden="true">/</span>
-                <a href="{{ route('home') }}#catalogue" class="hover:text-[#029e55] transition-colors">Catalogue</a>
+                <a href="{{ route('catalogue') }}" class="hover:text-[#029e55] transition-colors">Catalogue</a>
                 @if($product->category)
                     <span class="text-[#98a2b3]" aria-hidden="true">/</span>
-                    <a href="{{ route('home', ['category' => $product->category->slug]) }}#catalogue" class="hover:text-[#029e55] transition-colors">
+                    <a href="{{ route('catalogue', ['category' => $product->category->slug]) }}" class="hover:text-[#029e55] transition-colors">
                         {{ $product->category->name }}
                     </a>
                 @endif
@@ -44,7 +44,7 @@
                     </svg>
                     <span>{{ session('cart_success') }}</span>
                 </div>
-                <a href="{{ route('home') }}#devis" class="text-xs font-semibold text-[#029e55] underline hover:text-[#028347]">
+                <a href="{{ route('quotes.create') }}" class="text-xs font-semibold text-[#029e55] underline hover:text-[#028347]">
                     Finaliser mon devis &rarr;
                 </a>
             </div>
@@ -227,7 +227,7 @@
 
                             {{-- Bouton secondaire : Demande de contact rapide --}}
                             <a
-                                href="{{ route('home') }}#devis"
+                                href="{{ route('quotes.create') }}"
                                 class="inline-flex h-11 w-full items-center justify-center rounded-xl border border-[#e4e7ec] bg-white px-4 text-xs font-semibold text-[#1d2939] transition-[transform,border-color,color] duration-150 ease-out hover:border-[#029e55] hover:text-[#029e55] active:scale-[0.97]"
                             >
                                 Demander un chiffrage personnalisé immédiat
@@ -355,7 +355,7 @@
                         </h2>
                     </div>
 
-                    <a href="{{ route('home') }}#catalogue" class="hidden text-xs font-bold text-[#029e55] hover:text-[#028347] sm:block">
+                    <a href="{{ route('catalogue') }}" class="hidden text-xs font-bold text-[#029e55] hover:text-[#028347] sm:block">
                         Voir tout le catalogue &rarr;
                     </a>
                 </div>

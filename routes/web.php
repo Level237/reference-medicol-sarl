@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -10,7 +11,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::get('/catalogue', CatalogueController::class)->name('catalogue');
+
 Route::view('/a-propos', 'about')->name('about');
+
+Route::view('/services', 'services')->name('services');
 
 Route::get('/produits/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/panier', [CartController::class, 'index'])->name('cart.index');

@@ -32,7 +32,7 @@
 
         @if($hasActiveFilters)
             <a
-                href="{{ route('home') }}#catalogue"
+                href="{{ route('catalogue') }}"
                 class="text-xs font-semibold text-[#029e55] hover:text-[#028347] hover:underline transition-colors"
             >
                 Réinitialiser
@@ -40,7 +40,7 @@
         @endif
     </div>
 
-    <form id="filter-form" action="{{ route('home') }}#catalogue" method="GET" class="divide-y divide-[#e4e7ec]">
+    <form id="filter-form" action="{{ route('catalogue') }}" method="GET" class="divide-y divide-[#e4e7ec]">
         {{-- Préservation de la recherche, du tri et du mode d'affichage --}}
         @if(request('q'))
             <input type="hidden" name="q" value="{{ request('q') }}">

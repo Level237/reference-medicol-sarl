@@ -36,7 +36,7 @@
                 </p>
                 <div class="mt-6">
                     <a
-                        href="{{ route('home') }}#catalogue"
+                        href="{{ route('catalogue') }}"
                         class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#029e55] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-[transform,background-color] duration-150 ease-out hover:bg-[#028347] active:scale-[0.97]"
                     >
                         <span>Parcourir le catalogue</span>
@@ -171,7 +171,7 @@
                         {{-- Lien retour catalogue en bas à gauche conforme maquette --}}
                         <div class="mt-8 text-left">
                             <a
-                                href="{{ route('home') }}#catalogue"
+                                href="{{ route('catalogue') }}"
                                 class="inline-flex items-center gap-2 text-sm font-semibold text-[#029e55] transition-colors hover:text-[#028347]"
                             >
                                 <span aria-hidden="true">&larr;</span>

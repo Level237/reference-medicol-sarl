@@ -15,3 +15,11 @@ startAdminPreview();
 if (document.getElementById('contact-map')) {
     import('./contact-map.js');
 }
+
+if (document.getElementById('home-banners-section')) {
+    import('./home-banners.js');
+}
+
+if (document.getElementById('home-categories-scroller')) {
+    import('./home-categories.js');
+}

@@ -62,7 +62,7 @@
             <div class="flex items-center gap-3">
                 @if($hasActiveFilters)
                     <a
-                        href="{{ route('home') }}#catalogue"
+                        href="{{ route('catalogue') }}"
                         class="text-xs font-semibold text-[#029e55] hover:text-[#028347] hover:underline transition-colors"
                     >
                         Réinitialiser
@@ -84,7 +84,7 @@
 
         {{-- Corps déroulant du Modal (Scrollable) --}}
         <div class="overflow-y-auto px-5 py-3 flex-1 divide-y divide-[#e4e7ec] overscroll-contain">
-            <form id="mobile-filters-form" action="{{ route('home') }}#catalogue" method="GET">
+            <form id="mobile-filters-form" action="{{ route('catalogue') }}" method="GET">
                 {{-- Préservation des paramètres existants --}}
                 @if(request('q'))
                     <input type="hidden" name="q" value="{{ request('q') }}">

@@ -22,8 +22,8 @@
         ],
     ];
 
-    $catalogueUrl = route('home').'#catalogue';
-    $devisUrl = route('home').'#devis';
+    $catalogueUrl = route('catalogue');
+    $devisUrl = route('quotes.create');
 @endphp
 
 <section class="border-y border-[#e4e7ec] bg-white py-14 sm:py-16 lg:py-20" aria-labelledby="about-process-heading">
@@ -50,7 +50,7 @@
                     Demander un devis
                 </a>
                 <a
-                    href="{{ $catalogueUrl }}"
+                    href="{{ route('catalogue') }}"
                     class="inline-flex items-center justify-center rounded-xl border border-[#e4e7ec] bg-white px-5 py-3 text-sm font-semibold text-[#1d2939] transition-[transform,border-color,color] duration-150 ease-out hover:border-[#029e55] hover:text-[#029e55] active:scale-[0.97]"
                 >
                     Consulter le catalogue

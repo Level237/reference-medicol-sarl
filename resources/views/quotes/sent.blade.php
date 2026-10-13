@@ -114,7 +114,7 @@
             </a>
 
             <a
-                href="{{ route('home') }}#catalogue"
+                href="{{ route('catalogue') }}"
                 class="inline-flex items-center justify-center rounded-xl border border-[#e4e7ec] bg-white px-6 py-3.5 text-sm font-semibold text-[#1d2939] transition-[transform,background-color,border-color] duration-150 ease-out hover:border-[#98a2b3] active:scale-[0.97]"
             >
                 Retour au catalogue

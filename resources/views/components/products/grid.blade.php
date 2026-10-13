@@ -161,7 +161,7 @@
             </p>
             <div class="mt-5">
                 <a
-                    href="{{ route('home') }}#catalogue"
+                    href="{{ route('catalogue') }}"
                     class="inline-flex items-center gap-2 rounded-xl bg-[#029e55] px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-[#028347] transition-colors"
                 >
                     <span>Afficher tout le catalogue</span>

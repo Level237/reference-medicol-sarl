@@ -42,7 +42,7 @@
                 </h3>
                 <ul class="mt-4 space-y-2.5 text-sm">
                     <li>
-                        <a href="{{ route('home') }}" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
+                        <a href="{{ route('catalogue') }}" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
                             Catalogue
                         </a>
                     </li>
@@ -52,12 +52,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}#services" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
+                        <a href="{{ route('services') }}" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
                             Nos services
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}#devis" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
+                        <a href="{{ route('quotes.create') }}" class="text-[#98a2b3] transition-colors duration-150 ease-out hover:text-[#029e55]">
                             Demander un devis
                         </a>
                     </li>

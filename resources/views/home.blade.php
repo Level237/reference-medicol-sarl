@@ -1,55 +1,28 @@
 @extends('layouts.public')
 
-@section('title', 'Tout le matériel pour vos soins')
-@section('meta_description', "Des équipements fiables pour les professionnels de santé à Douala et dans toute l'Afrique centrale. Référence Médico Sarl.")
+@section('title', 'Référence Médico Sarl — Matériel médical & équipements hospitaliers à Douala')
+@section('meta_description', "Partenaire B2B pour l'équipement, l'approvisionnement et la maintenance de plateaux techniques à Douala et dans toute la zone CEMAC. Référence Médico Sarl.")
 
 @section('content')
-    {{-- 1. Section Hero (Composant dédié) --}}
+    {{-- 1. Hero : même structure que catalogue, sans fil d'ariane catalogue --}}
     <x-home.hero
         :categories="$categories"
-        :selectedCategory="$selectedCategory"
+        breadcrumb=""
+        :searchAction="route('catalogue')"
     />
 
-    {{-- 2. Section Produits & Filtres (Composants dédiés) --}}
-    <section id="catalogue" class="border-t border-[#e4e7ec] bg-[#f8fafc]/50 py-10 sm:py-14">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-8">
-                {{-- Sidebar Filtres à gauche (Desktop lg+) --}}
-                <aside class="hidden lg:block lg:col-span-1">
-                    <x-products.filter-sidebar
-                        :categories="$categories"
-                        :brands="$brands"
-                        :selectedCategory="$selectedCategory"
-                        :selectedBrand="$selectedBrand"
-                        :inStock="$inStock"
-                        :priceType="$priceType"
-                        :priceMin="$priceMin"
-                        :priceMax="$priceMax"
-                    />
-                </aside>
+    {{-- 2. Familles d'équipements : 6 tuiles directes vers le catalogue --}}
+    <x-home.categories-grid :categories="$featuredCategories" />
 
-                {{-- Contenu Catalogue à droite : Toolbar, Grille & Pagination --}}
-                <div class="lg:col-span-3">
-                    <x-products.grid
-                        :products="$products"
-                        :sort="$sort"
-                        :view="$view"
-                    />
-                </div>
-            </div>
-        </div>
-    </section>
+    {{-- 3. Carrousel des 3 bannières en ratio natif 1034x634 --}}
+    <x-home.banners-carousel :banners="$banners" />
 
-    {{-- Modal Filtres Mobile (Bottom Sheet glissant du bas vers le haut) --}}
-    <x-products.filter-mobile-modal
-        :categories="$categories"
-        :brands="$brands"
-        :selectedCategory="$selectedCategory"
-        :selectedBrand="$selectedBrand"
-        :inStock="$inStock"
-        :priceType="$priceType"
-        :priceMin="$priceMin"
-        :priceMax="$priceMax"
-        :products="$products"
-    />
+    {{-- 4. Sélection d'équipements prioritaires (max 6 produits, sans filtres) --}}
+    <x-home.featured-products :products="$featuredProducts" />
+
+    {{-- 5. Trois gestes d'intervention B2B --}}
+    <x-home.steps-strip />
+
+    {{-- 6. Bandeau final centré, 1 seul bouton --}}
+    <x-about.cta-contact />
 @endsection

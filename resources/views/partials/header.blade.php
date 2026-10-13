@@ -1,20 +1,20 @@
 {{-- Header Public conforme à la maquette et docs/DESIGN.md --}}
 <header class="sticky top-0 z-40 bg-white border-b border-[#e4e7ec]/80 backdrop-blur-md bg-white/95">
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:gap-4 sm:px-6 lg:px-8">
         {{-- Logo & Titre de marque --}}
-        <a href="{{ route('home') }}" class="group flex items-center gap-3 shrink-0">
+        <a href="{{ route('home') }}" class="group flex min-w-0 items-center gap-2.5 sm:gap-3">
             <img
                 src="{{ asset('assets/images/logo.png') }}"
                 alt="Référence Médico Sarl"
-                class="h-12 w-12 rounded-full object-contain shadow-xs group-hover:scale-105 transition-transform"
+                class="h-10 w-10 shrink-0 rounded-full object-contain shadow-xs transition-transform group-hover:scale-105 sm:h-12 sm:w-12"
                 width="48"
                 height="48"
             >
-            <div class="flex flex-col">
-                <span class="text-lg font-bold tracking-tight text-[#1d2939] group-hover:text-[#029e55] transition-colors leading-tight">
+            <div class="flex min-w-0 flex-col">
+                <span class="truncate text-base font-bold leading-tight tracking-tight text-[#1d2939] transition-colors group-hover:text-[#029e55] sm:text-lg">
                     Référence Médico Sarl
                 </span>
-                <span class="text-[11px] font-normal text-[#667085] leading-tight">
+                <span class="hidden truncate text-[11px] font-normal leading-tight text-[#667085] sm:block">
                     votre partenaire en matériel médical
                 </span>
             </div>
@@ -23,15 +23,15 @@
         {{-- Navigation Desktop sans border-bottom --}}
         <nav class="hidden md:flex items-center gap-8">
             <a
-                href="{{ route('home') }}"
-                class="text-sm transition-colors {{ request()->routeIs('home') ? 'font-semibold text-[#029e55]' : 'font-medium text-[#667085] hover:text-[#1d2939]' }}"
+                href="{{ route('catalogue') }}"
+                class="text-sm transition-colors {{ request()->routeIs('catalogue') ? 'font-semibold text-[#029e55]' : 'font-medium text-[#667085] hover:text-[#1d2939]' }}"
             >
                 Catalogue
             </a>
 
             <a
-                href="#services"
-                class="text-sm font-medium text-[#667085] hover:text-[#1d2939] transition-colors"
+                href="{{ route('services') }}"
+                class="text-sm transition-colors {{ request()->routeIs('services') ? 'font-semibold text-[#029e55]' : 'font-medium text-[#667085] hover:text-[#1d2939]' }}"
             >
                 Nos services
             </a>
@@ -86,18 +86,18 @@
 
             {{-- Bouton Demander un devis (conforme maquette sombre) --}}
             <a
-                href="{{ route('home') }}#devis"
+                href="{{ route('quotes.create') }}"
                 class="inline-flex items-center justify-center rounded-lg bg-[#0f172a] px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#1e293b] active:scale-[0.99] transition-all"
             >
                 Demander un devis
             </a>
         </div>
 
-        {{-- Mobile Hamburger + Search + Cart --}}
-        <div class="flex items-center gap-1 sm:gap-2 md:hidden">
+        {{-- Mobile : panier + menu. La recherche vit dans le tiroir. --}}
+        <div class="flex shrink-0 items-center gap-1 md:hidden">
             <a
                 href="{{ route('cart.index') }}"
-                class="relative p-2 text-[#1d2939] hover:bg-[#f2f4f7] rounded-lg"
+                class="relative rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
                 aria-label="Voir le panier de devis"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -112,21 +112,11 @@
 
             <button
                 type="button"
-                id="mobile-search-btn"
-                class="p-2 text-[#1d2939] hover:bg-[#f2f4f7] rounded-lg"
-                aria-label="Rechercher"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-            </button>
-
-            <button
-                type="button"
                 id="mobile-menu-btn"
-                class="p-2 text-[#1d2939] hover:bg-[#f2f4f7] rounded-lg"
+                class="rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
                 aria-label="Menu principal"
                 aria-expanded="false"
+                aria-controls="menu-mobile"
             >
                 <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -140,7 +130,7 @@
 
     {{-- Barre de recherche déroulante --}}
     <div id="search-drawer" class="hidden border-t border-[#e4e7ec] bg-[#f8fafc] px-4 py-3 sm:px-6 lg:px-8">
-        <form action="{{ route('home') }}#catalogue" method="GET" class="mx-auto flex max-w-2xl flex-col gap-2 sm:flex-row sm:items-stretch">
+        <form action="{{ route('catalogue') }}" method="GET" class="mx-auto flex max-w-2xl flex-col gap-2 sm:flex-row sm:items-stretch">
             <x-products.category-select
                 :categories="$searchCategories ?? collect()"
                 :selectedCategory="request('category', '')"
@@ -154,7 +144,7 @@
                     name="q"
                     value="{{ request('q') }}"
                     placeholder="Produit ou référence..."
-                    class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#98a2b3] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
+                    class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#667085] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
                 />
                 <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -169,81 +159,212 @@
         </form>
     </div>
 
-    {{-- Menu Mobile --}}
-    <div id="menu-mobile" class="hidden border-t border-[#e4e7ec] bg-white px-4 py-4 md:hidden">
-        <nav class="flex flex-col space-y-3">
-            <a
-                href="{{ route('home') }}"
-                class="flex items-center justify-between rounded-lg px-3 py-2 text-base font-semibold {{ request()->routeIs('home') ? 'bg-[#029e55]/10 text-[#029e55]' : 'text-[#1d2939] hover:bg-[#f2f4f7]' }}"
-            >
-                <span>Catalogue</span>
-                @if(request()->routeIs('home'))
-                    <span class="h-1.5 w-1.5 rounded-full bg-[#029e55]"></span>
-                @endif
-            </a>
-            <a
-                href="#services"
-                class="rounded-lg px-3 py-2 text-base font-medium text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]"
-            >
-                Nos services
-            </a>
-            <a
-                href="{{ route('about') }}"
-                class="rounded-lg px-3 py-2 text-base font-medium {{ request()->routeIs('about') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
-            >
-                À propos
-            </a>
-            <a
-                href="{{ route('contact') }}"
-                class="rounded-lg px-3 py-2 text-base font-medium {{ request()->routeIs('contact') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
-            >
-                Contact
-            </a>
-
-            <div class="pt-3 border-t border-[#e4e7ec]">
-                <a
-                    href="#devis"
-                    class="flex w-full items-center justify-center rounded-lg bg-[#0f172a] px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-[#1e293b]"
-                >
-                    Demander un devis
-                </a>
-            </div>
-        </nav>
-    </div>
 </header>
+
+{{-- Tiroir mobile : hors du header, le backdrop-filter casserait le positionnement fixed. --}}
+<div id="mobile-nav" class="md:hidden">
+    <div
+        id="mobile-nav-backdrop"
+        data-open="false"
+        class="fixed inset-0 z-50 bg-[#0f172a]/40 transition-opacity duration-300 ease-out"
+        style="opacity: 0; pointer-events: none"
+    ></div>
+
+    <div
+        id="menu-mobile"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mobile-menu-title"
+        aria-hidden="true"
+        data-open="false"
+        inert
+        class="fixed inset-y-0 right-0 z-50 flex w-[min(22rem,88vw)] flex-col bg-white shadow-xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style="translate: 100% 0"
+    >
+        <div class="flex h-16 shrink-0 items-center justify-between border-b border-[#e4e7ec] px-4">
+            <p id="mobile-menu-title" class="text-sm font-semibold text-[#1d2939]">Menu</p>
+            <button
+                type="button"
+                id="mobile-menu-close"
+                class="rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
+                aria-label="Fermer le menu"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto overscroll-contain px-3 py-4">
+            <div class="border-b border-[#e4e7ec] pb-3">
+                <button
+                    type="button"
+                    id="mobile-menu-search-toggle"
+                    class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-[#1d2939] hover:bg-[#f2f4f7]"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu-search"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-[#029e55]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                    <span>Recherche</span>
+                </button>
+
+                <form id="mobile-menu-search" action="{{ route('catalogue') }}" method="GET" class="hidden space-y-2 px-1 pb-1 pt-2">
+                    <x-products.category-select
+                        :categories="$searchCategories ?? collect()"
+                        :selectedCategory="request('category', '')"
+                        id="mobile-menu-category-select"
+                    />
+
+                    <div class="relative">
+                        <input
+                            type="search"
+                            name="q"
+                            value="{{ request('q') }}"
+                            placeholder="Produit ou référence..."
+                            class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#667085] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
+                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full rounded-lg bg-[#029e55] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#028547]"
+                    >
+                        Chercher
+                    </button>
+                </form>
+            </div>
+
+            <nav class="mt-3 flex flex-col gap-1" aria-label="Navigation">
+                <a
+                    href="{{ route('catalogue') }}"
+                    class="flex items-center justify-between rounded-lg px-3 py-2.5 text-base font-semibold {{ request()->routeIs('catalogue') ? 'bg-[#029e55]/10 text-[#029e55]' : 'text-[#1d2939] hover:bg-[#f2f4f7]' }}"
+                >
+                    <span>Catalogue</span>
+                    @if(request()->routeIs('catalogue'))
+                        <span class="h-1.5 w-1.5 rounded-full bg-[#029e55]"></span>
+                    @endif
+                </a>
+                <a
+                    href="{{ route('services') }}"
+                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('services') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
+                >
+                    Nos services
+                </a>
+                <a
+                    href="{{ route('about') }}"
+                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('about') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
+                >
+                    À propos
+                </a>
+                <a
+                    href="{{ route('contact') }}"
+                    class="rounded-lg px-3 py-2.5 text-base font-medium {{ request()->routeIs('contact') ? 'bg-[#029e55]/10 font-semibold text-[#029e55]' : 'text-[#667085] hover:bg-[#f2f4f7] hover:text-[#1d2939]' }}"
+                >
+                    Contact
+                </a>
+            </nav>
+        </div>
+
+        <div class="shrink-0 border-t border-[#e4e7ec] p-4">
+            <a
+                href="{{ route('quotes.create') }}"
+                class="flex w-full items-center justify-center rounded-lg bg-[#0f172a] px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-[#1e293b]"
+            >
+                Demander un devis
+            </a>
+        </div>
+    </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchToggleBtn = document.getElementById('search-toggle-btn');
-        const mobileSearchBtn = document.getElementById('mobile-search-btn');
         const searchDrawer = document.getElementById('search-drawer');
-
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('menu-mobile');
+        const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
         const hamburgerIcon = document.getElementById('hamburger-icon');
         const closeIcon = document.getElementById('close-icon');
+        const mobileSearchToggle = document.getElementById('mobile-menu-search-toggle');
+        const mobileSearch = document.getElementById('mobile-menu-search');
 
-        function toggleSearch() {
-            if (searchDrawer) {
+        if (searchToggleBtn && searchDrawer) {
+            searchToggleBtn.addEventListener('click', function () {
                 searchDrawer.classList.toggle('hidden');
                 if (!searchDrawer.classList.contains('hidden')) {
                     const input = searchDrawer.querySelector('input[type="search"]');
                     if (input) input.focus();
                 }
+            });
+        }
+
+        function setMenuOpen(open) {
+            if (!mobileMenuBtn || !mobileMenu || !mobileNavBackdrop) return;
+
+            mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+            mobileMenu.dataset.open = open ? 'true' : 'false';
+            mobileNavBackdrop.dataset.open = open ? 'true' : 'false';
+            mobileMenu.style.translate = open ? '0 0' : '100% 0';
+            mobileNavBackdrop.style.opacity = open ? '1' : '0';
+            mobileNavBackdrop.style.pointerEvents = open ? 'auto' : 'none';
+            mobileMenu.toggleAttribute('inert', !open);
+            document.body.classList.toggle('overflow-hidden', open);
+
+            if (hamburgerIcon && closeIcon) {
+                hamburgerIcon.classList.toggle('hidden', open);
+                closeIcon.classList.toggle('hidden', !open);
+            }
+
+            if (open && mobileMenuClose) {
+                mobileMenuClose.focus();
             }
         }
 
-        if (searchToggleBtn) searchToggleBtn.addEventListener('click', toggleSearch);
-        if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', toggleSearch);
-
-        if (mobileMenuBtn && mobileMenu) {
+        if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', function () {
-                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('hidden');
-                if (hamburgerIcon && closeIcon) {
-                    hamburgerIcon.classList.toggle('hidden');
-                    closeIcon.classList.toggle('hidden');
+                setMenuOpen(mobileMenuBtn.getAttribute('aria-expanded') !== 'true');
+            });
+        }
+
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', function () {
+                setMenuOpen(false);
+                if (mobileMenuBtn) mobileMenuBtn.focus();
+            });
+        }
+
+        if (mobileNavBackdrop) {
+            mobileNavBackdrop.addEventListener('click', function () {
+                setMenuOpen(false);
+            });
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && mobileMenu && mobileMenu.dataset.open === 'true') {
+                setMenuOpen(false);
+                if (mobileMenuBtn) mobileMenuBtn.focus();
+            }
+        });
+
+        const desktopNav = window.matchMedia('(min-width: 768px)');
+        desktopNav.addEventListener('change', function (event) {
+            if (event.matches) setMenuOpen(false);
+        });
+
+        if (mobileSearchToggle && mobileSearch) {
+            mobileSearchToggle.addEventListener('click', function () {
+                const open = mobileSearch.classList.toggle('hidden') === false;
+                mobileSearchToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (open) {
+                    const input = mobileSearch.querySelector('input[type="search"]');
+                    if (input) input.focus();
                 }
             });
         }

@@ -1,7 +1,13 @@
 @props([
     'categories' => collect(),
     'selectedCategory' => '',
+    'breadcrumb' => '',
+    'searchAction' => null,
 ])
+
+@php
+    $action = $searchAction ?? route('catalogue');
+@endphp
 
 {{-- Section Hero reproduction fidèle avec image de fond --}}
 <section class="relative min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px] overflow-hidden bg-white">
@@ -22,13 +28,16 @@
     <div class="relative mx-auto flex max-w-7xl flex-col justify-between px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px]">
         {{-- Ligne supérieure : Fil d'Ariane & Tagline supérieure droite --}}
         <div class="flex items-start justify-between gap-4">
-            {{-- Fil d'Ariane : Accueil > Catalogue --}}
             <nav aria-label="Fil d'Ariane" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]">
-                <a href="{{ route('home') }}" class="text-[#029e55] hover:underline transition-colors">Accueil</a>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-[#667085]">Catalogue</span>
+                @if($breadcrumb)
+                    <a href="{{ route('home') }}" class="text-[#029e55] hover:underline transition-colors">Accueil</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span class="text-[#667085]">{{ $breadcrumb }}</span>
+                @else
+                    <span class="text-[#1d2939]">Accueil</span>
+                @endif
             </nav>
 
             {{-- Accroche en haut à droite visible sur écran large --}}
@@ -57,7 +66,7 @@
             </p>
 
             {{-- Barre de recherche compacte : select catégorie + champ + bouton --}}
-            <form action="{{ route('home') }}#catalogue" method="GET" class="mt-6 sm:mt-8 max-w-xl">
+            <form action="{{ $action }}" method="GET" class="mt-6 sm:mt-8 max-w-xl">
                 @if(request('brand'))
                     <input type="hidden" name="brand" value="{{ request('brand') }}">
                 @endif
@@ -82,7 +91,7 @@
                                 name="q"
                                 value="{{ request('q') }}"
                                 placeholder="Produit ou référence..."
-                                class="w-full min-w-0 bg-transparent py-2.5 sm:py-3 pl-2 pr-2 text-sm text-[#1d2939] placeholder-[#98a2b3] focus:outline-none"
+                                class="w-full min-w-0 bg-transparent py-2.5 sm:py-3 pl-2 pr-2 text-sm text-[#1d2939] placeholder-[#667085] focus:outline-none"
                             />
                         </div>
 
