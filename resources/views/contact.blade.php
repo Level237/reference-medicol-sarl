@@ -2,6 +2,7 @@
 
 @section('title', 'Contact')
 @section('meta_description', 'Écrivez à Référence Médico Sarl pour un équipement, un projet ou une question. Douala, Cameroun.')
+@section('og_image', asset('assets/images/about/hopital.jpg'))
 
 @section('content')
     <section class="relative flex min-h-[320px] items-center justify-center overflow-hidden sm:min-h-[380px] lg:min-h-[440px]">

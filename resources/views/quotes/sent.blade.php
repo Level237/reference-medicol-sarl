@@ -1,7 +1,8 @@
 @extends('layouts.public')
 
 @section('title', 'Demande envoyée')
-@section('meta_description', 'Votre demande de devis a été enregistrée — Référence Médico Sarl.')
+@section('meta_description', 'Votre demande de devis a été enregistrée. Référence Médico Sarl.')
+@section('robots', 'noindex, nofollow')
 
 @php
     $items = $quote?->items ?? collect();

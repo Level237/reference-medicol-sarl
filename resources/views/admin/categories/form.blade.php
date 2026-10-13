@@ -227,7 +227,7 @@
                                     name="meta_title"
                                     type="text"
                                     value="{{ old('meta_title', $category->meta_title) }}"
-                                    placeholder="Ex: Matériel d'imagerie médicale pour hôpitaux — Référence Médico"
+                                    placeholder="Ex: Matériel d'imagerie médicale pour hôpitaux, Référence Médico"
                                     class="{{ $field }}"
                                 >
                             </div>

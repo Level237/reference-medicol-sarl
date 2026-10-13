@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 
 #[Fillable([
     'category_id',
@@ -26,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
     'sort_order',
     'is_published',
 ])]
-class Product extends Model
+class Product extends Model implements Sitemapable
 {
     /**
      * @return array<string, string>
@@ -98,5 +100,13 @@ class Product extends Model
             'sort_order' => 'min',
             'id' => 'min',
         ]);
+    }
+
+    public function toSitemapTag(): Url
+    {
+        return Url::create(route('products.show', $this->slug))
+            ->setLastModificationDate($this->updated_at ?? now())
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+            ->setPriority(0.8);
     }
 }

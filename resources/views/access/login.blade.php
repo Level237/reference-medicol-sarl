@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Connexion | Référence Médico Sarl</title>
+        <meta name="description" content="Accès réservé à l'espace professionnel de Référence Médico Sarl.">
         <meta name="robots" content="noindex, nofollow">
-        <title>Connexion</title>
         @fonts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>

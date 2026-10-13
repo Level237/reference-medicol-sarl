@@ -21,6 +21,9 @@ class PublicHomeTest extends TestCase
             ->assertSee(route('catalogue'), false)
             ->assertSee('assets/images/hero.png', false)
             ->assertSee('Produit ou référence...', false)
+            ->assertSee('Matériel médical et équipements hospitaliers à Douala | Référence Médico Sarl', false)
+            ->assertSee('rel="canonical"', false)
+            ->assertDontSee('—', false)
             ->getContent();
 
         preg_match('/aria-label="Fil d\'Ariane".*?<\/nav>/s', $html, $breadcrumb);
@@ -70,6 +73,8 @@ class PublicHomeTest extends TestCase
         $this->get(route('home'))
             ->assertOk()
             ->assertSee('Familles d\'équipements médicaux', false)
+            ->assertSee('Voir plus', false)
+            ->assertSee(route('categories.index'), false)
             ->assertSee('Consultation', false)
             ->assertSee('Équipements les plus demandés', false)
             ->assertSee('Tensiomètre de poignet', false)

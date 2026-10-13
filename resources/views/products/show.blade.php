@@ -1,7 +1,9 @@
 @extends('layouts.public')
 
 @section('title', $product->meta_title ?: $product->name)
-@section('meta_description', $product->meta_description ?: ($product->summary ?: 'Fiche technique et demande de cotation pour ' . $product->name . ' — Référence Médico Sarl.'))
+@section('meta_description', $product->meta_description ?: ($product->summary ?: 'Fiche technique et demande de cotation pour '.$product->name.'. Référence Médico Sarl.'))
+@section('canonical', route('products.show', $product->slug))
+@section('og_type', 'product')
 
 @php
     $allImages = $product->images;
@@ -12,6 +14,8 @@
     $comparePrice = $product->compareAtPrice();
     $specifications = is_array($product->specifications) ? $product->specifications : [];
 @endphp
+
+@section('og_image', $mainImagePath ? asset('storage/'.$mainImagePath) : asset('assets/images/logo.png'))
 
 @section('content')
 <div class="bg-white">

@@ -384,7 +384,7 @@
                                         name="meta_title"
                                         type="text"
                                         value="{{ old('meta_title', $product->meta_title) }}"
-                                        placeholder="Ex: Échographe Doppler portable haute précision — Référence Médico"
+                                        placeholder="Ex: Échographe Doppler portable haute précision, Référence Médico"
                                         class="{{ $field }}"
                                     >
                                 </div>

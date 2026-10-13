@@ -2,16 +2,23 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogueController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuoteRequestController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');
+
 Route::get('/catalogue', CatalogueController::class)->name('catalogue');
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::view('/a-propos', 'about')->name('about');
 

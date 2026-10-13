@@ -59,6 +59,9 @@
                 id="search-toggle-btn"
                 class="p-2.5 text-[#1d2939] hover:text-[#029e55] hover:bg-[#f2f4f7] rounded-lg transition-colors"
                 aria-label="Rechercher un produit ou équipement"
+                aria-haspopup="dialog"
+                aria-controls="search-modal"
+                aria-expanded="false"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -128,37 +131,6 @@
         </div>
     </div>
 
-    {{-- Barre de recherche déroulante --}}
-    <div id="search-drawer" class="hidden border-t border-[#e4e7ec] bg-[#f8fafc] px-4 py-3 sm:px-6 lg:px-8">
-        <form action="{{ route('catalogue') }}" method="GET" class="mx-auto flex max-w-2xl flex-col gap-2 sm:flex-row sm:items-stretch">
-            <x-products.category-select
-                :categories="$searchCategories ?? collect()"
-                :selectedCategory="request('category', '')"
-                id="header-category-select"
-                class="sm:w-48 shrink-0"
-            />
-
-            <div class="relative min-w-0 flex-1">
-                <input
-                    type="search"
-                    name="q"
-                    value="{{ request('q') }}"
-                    placeholder="Produit ou référence..."
-                    class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#667085] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
-                />
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-            </div>
-            <button
-                type="submit"
-                class="shrink-0 rounded-lg bg-[#029e55] px-4 py-2 text-sm font-medium text-white hover:bg-[#028547] transition-colors"
-            >
-                Chercher
-            </button>
-        </form>
-    </div>
-
 </header>
 
 {{-- Tiroir mobile : hors du header, le backdrop-filter casserait le positionnement fixed. --}}
@@ -201,42 +173,15 @@
                     type="button"
                     id="mobile-menu-search-toggle"
                     class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-[#1d2939] hover:bg-[#f2f4f7]"
+                    aria-haspopup="dialog"
+                    aria-controls="search-modal"
                     aria-expanded="false"
-                    aria-controls="mobile-menu-search"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-[#029e55]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                     <span>Recherche</span>
                 </button>
-
-                <form id="mobile-menu-search" action="{{ route('catalogue') }}" method="GET" class="hidden space-y-2 px-1 pb-1 pt-2">
-                    <x-products.category-select
-                        :categories="$searchCategories ?? collect()"
-                        :selectedCategory="request('category', '')"
-                        id="mobile-menu-category-select"
-                    />
-
-                    <div class="relative">
-                        <input
-                            type="search"
-                            name="q"
-                            value="{{ request('q') }}"
-                            placeholder="Produit ou référence..."
-                            class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#667085] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
-                        />
-                        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="w-full rounded-lg bg-[#029e55] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#028547]"
-                    >
-                        Chercher
-                    </button>
-                </form>
             </div>
 
             <nav class="mt-3 flex flex-col gap-1" aria-label="Navigation">
@@ -281,10 +226,61 @@
     </div>
 </div>
 
+<dialog
+    id="search-modal"
+    aria-labelledby="search-modal-title"
+    class="m-auto w-[min(32rem,calc(100%-2rem))] rounded-2xl border border-[#e4e7ec] bg-white p-0 text-[#1d2939] shadow-xl backdrop:bg-[#0f172a]/40 backdrop:backdrop-blur-xl"
+>
+    <div class="flex items-center justify-between border-b border-[#e4e7ec] px-5 py-4">
+        <h2 id="search-modal-title" class="text-base font-semibold text-[#1d2939]">Recherche</h2>
+        <button
+            type="button"
+            id="search-modal-close"
+            class="rounded-lg p-2 text-[#1d2939] hover:bg-[#f2f4f7]"
+            aria-label="Fermer la recherche"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <form action="{{ route('catalogue') }}" method="GET" class="space-y-3 px-5 py-5">
+        <x-products.category-select
+            :categories="$searchCategories ?? collect()"
+            :selectedCategory="request('category', '')"
+            id="search-modal-category"
+        />
+
+        <div class="relative">
+            <label for="search-modal-query" class="sr-only">Produit ou référence</label>
+            <input
+                id="search-modal-query"
+                type="search"
+                name="q"
+                value="{{ request('q') }}"
+                placeholder="Produit ou référence..."
+                class="w-full rounded-lg border border-[#e4e7ec] bg-white py-2.5 pl-10 pr-4 text-sm text-[#1d2939] placeholder-[#667085] focus:border-[#029e55] focus:outline-none focus:ring-2 focus:ring-[#029e55]/20"
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-3 h-4 w-4 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+        </div>
+
+        <button
+            type="submit"
+            class="w-full rounded-lg bg-[#029e55] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#028547]"
+        >
+            Chercher
+        </button>
+    </form>
+</dialog>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchToggleBtn = document.getElementById('search-toggle-btn');
-        const searchDrawer = document.getElementById('search-drawer');
+        const searchModal = document.getElementById('search-modal');
+        const searchModalClose = document.getElementById('search-modal-close');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('menu-mobile');
         const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
@@ -292,17 +288,6 @@
         const hamburgerIcon = document.getElementById('hamburger-icon');
         const closeIcon = document.getElementById('close-icon');
         const mobileSearchToggle = document.getElementById('mobile-menu-search-toggle');
-        const mobileSearch = document.getElementById('mobile-menu-search');
-
-        if (searchToggleBtn && searchDrawer) {
-            searchToggleBtn.addEventListener('click', function () {
-                searchDrawer.classList.toggle('hidden');
-                if (!searchDrawer.classList.contains('hidden')) {
-                    const input = searchDrawer.querySelector('input[type="search"]');
-                    if (input) input.focus();
-                }
-            });
-        }
 
         function setMenuOpen(open) {
             if (!mobileMenuBtn || !mobileMenu || !mobileNavBackdrop) return;
@@ -358,14 +343,41 @@
             if (event.matches) setMenuOpen(false);
         });
 
-        if (mobileSearchToggle && mobileSearch) {
-            mobileSearchToggle.addEventListener('click', function () {
-                const open = mobileSearch.classList.toggle('hidden') === false;
-                mobileSearchToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                if (open) {
-                    const input = mobileSearch.querySelector('input[type="search"]');
-                    if (input) input.focus();
-                }
+        function openSearchModal() {
+            if (!searchModal) return;
+
+            if (mobileMenu && mobileMenu.dataset.open === 'true') {
+                setMenuOpen(false);
+            }
+
+            if (typeof searchModal.showModal === 'function' && !searchModal.open) {
+                searchModal.showModal();
+            }
+
+            if (searchToggleBtn) searchToggleBtn.setAttribute('aria-expanded', 'true');
+            if (mobileSearchToggle) mobileSearchToggle.setAttribute('aria-expanded', 'true');
+
+            const input = searchModal.querySelector('input[type="search"]');
+            if (input) input.focus();
+        }
+
+        if (searchToggleBtn) searchToggleBtn.addEventListener('click', openSearchModal);
+        if (mobileSearchToggle) mobileSearchToggle.addEventListener('click', openSearchModal);
+
+        if (searchModalClose && searchModal) {
+            searchModalClose.addEventListener('click', function () {
+                searchModal.close();
+            });
+        }
+
+        if (searchModal) {
+            searchModal.addEventListener('click', function (event) {
+                if (event.target === searchModal) searchModal.close();
+            });
+
+            searchModal.addEventListener('close', function () {
+                if (searchToggleBtn) searchToggleBtn.setAttribute('aria-expanded', 'false');
+                if (mobileSearchToggle) mobileSearchToggle.setAttribute('aria-expanded', 'false');
             });
         }
     });

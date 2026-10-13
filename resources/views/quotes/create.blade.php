@@ -1,7 +1,8 @@
 @extends('layouts.public')
 
 @section('title', 'Demande de devis')
-@section('meta_description', 'Transmettez vos coordonnées pour recevoir une cotation sur les équipements sélectionnés — Référence Médico Sarl.')
+@section('meta_description', 'Transmettez vos coordonnées pour recevoir une cotation sur les équipements sélectionnés. Référence Médico Sarl.')
+@section('robots', 'noindex, nofollow')
 
 @php
     $itemCount = $cart->count();

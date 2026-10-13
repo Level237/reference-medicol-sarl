@@ -1,7 +1,11 @@
 @extends('layouts.public')
 
-@section('title', 'Référence Médico Sarl — Matériel médical & équipements hospitaliers à Douala')
+@section('title', 'Matériel médical et équipements hospitaliers à Douala')
 @section('meta_description', "Partenaire B2B pour l'équipement, l'approvisionnement et la maintenance de plateaux techniques à Douala et dans toute la zone CEMAC. Référence Médico Sarl.")
+@section('og_image', asset('assets/images/banner6.jpeg'))
+@section('og_image_alt', 'Équipement hospitalier proposé par Référence Médico Sarl à Douala')
+@section('og_image_width', '1034')
+@section('og_image_height', '634')
 
 @section('content')
     {{-- 1. Hero : même structure que catalogue, sans fil d'ariane catalogue --}}

@@ -1,7 +1,8 @@
 @extends('layouts.public')
 
 @section('title', 'Mon panier de devis')
-@section('meta_description', 'Rassemblez vos équipements dans une seule demande de cotation — Référence Médico Sarl.')
+@section('meta_description', 'Rassemblez vos équipements dans une seule demande de cotation. Référence Médico Sarl.')
+@section('robots', 'noindex, nofollow')
 
 @php
     $itemCount = $cart->count();

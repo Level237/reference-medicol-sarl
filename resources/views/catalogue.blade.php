@@ -1,7 +1,42 @@
 @extends('layouts.public')
 
-@section('title', 'Catalogue — Matériel et équipements médicaux')
-@section('meta_description', "Explorez l'ensemble de nos équipements médicaux, consommables et appareils hospitaliers disponibles à Douala et en zone CEMAC. Référence Médico Sarl.")
+@php
+    $activeCategory = filled($selectedCategory ?? null)
+        ? ($categories ?? collect())->first(fn ($category) => $category->slug === $selectedCategory || (string) $category->id === (string) $selectedCategory)
+        : null;
+
+    $pageTitle = $activeCategory
+        ? ($activeCategory->meta_title ?: $activeCategory->name)
+        : 'Catalogue de matériel et équipements médicaux';
+
+    $pageDescription = $activeCategory
+        ? ($activeCategory->meta_description ?: ($activeCategory->description ?: 'Équipements de la famille '.$activeCategory->name.' pour les hôpitaux et cliniques à Douala et en zone CEMAC. Référence Médico Sarl.'))
+        : "Explorez l'ensemble de nos équipements médicaux, consommables et appareils hospitaliers disponibles à Douala et en zone CEMAC. Référence Médico Sarl.";
+
+    $shareImage = asset('assets/images/hero.png');
+    $sharePath = $activeCategory?->meta_image ?: $activeCategory?->image;
+
+    if (is_string($sharePath) && $sharePath !== '') {
+        $shareImage = str_starts_with($sharePath, 'http://') || str_starts_with($sharePath, 'https://')
+            ? $sharePath
+            : asset('storage/'.$sharePath);
+    }
+
+    $hasNarrowingFilters = filled($q ?? null)
+        || filled($selectedBrand ?? null)
+        || ($inStock ?? false)
+        || filled($priceType ?? null)
+        || filled($priceMin ?? null)
+        || filled($priceMax ?? null);
+@endphp
+
+@section('title', $pageTitle)
+@section('meta_description', $pageDescription)
+@section('canonical', $activeCategory ? route('catalogue', ['category' => $activeCategory->slug]) : route('catalogue'))
+@section('og_image', $shareImage)
+@if($hasNarrowingFilters)
+    @section('robots', 'noindex, follow')
+@endif
 
 @section('content')
     {{-- Section Hero Catalogue --}}

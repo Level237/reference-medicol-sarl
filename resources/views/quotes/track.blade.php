@@ -1,7 +1,8 @@
 @extends('layouts.public')
 
 @section('title', 'Où en est votre demande ?')
-@section('meta_description', 'Consultez rapidement l\'avancement de votre demande de devis — Référence Médico Sarl.')
+@section('meta_description', 'Consultez rapidement l\'avancement de votre demande de devis. Référence Médico Sarl.')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 <div class="bg-white">
