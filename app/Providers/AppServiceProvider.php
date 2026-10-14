@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\ContactMessage;
 use App\Models\Product;
 use App\Models\QuoteRequest;
+use App\Services\CartService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -31,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('partials.header', function (RenderedView $view): void {
-            $cartService = app(\App\Services\CartService::class);
+            $cartService = app(CartService::class);
             $view->with('cartCount', $cartService->count());
 
             if (! Schema::hasTable('categories')) {
@@ -47,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
                 ->get());
         });
 
-        View::composer(['admin.layout', 'admin.dashboard'], function (RenderedView $view): void {
+        View::composer(['admin.layout', 'admin.dashboard', 'admin.profile.edit'], function (RenderedView $view): void {
             $admin = auth()->user();
 
             if ($admin === null) {

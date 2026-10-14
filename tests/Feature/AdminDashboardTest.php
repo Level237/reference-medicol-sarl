@@ -50,6 +50,8 @@ class AdminDashboardTest extends TestCase
         $response->assertSee('Produits', false);
         $response->assertSee('Demandes de devis', false);
         $response->assertSee('Messages', false);
+        $response->assertSee('Profil', false);
+        $response->assertDontSee('Paramètres', false);
         $response->assertSee('Awa Ndiaye', false);
         $response->assertSee('Se déconnecter', false);
         $response->assertSee('Rechercher un appareil, une référence, un devis...', false);

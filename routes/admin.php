@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\QuoteRequestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SessionController;
@@ -76,3 +77,9 @@ Route::put(config('access.path').'/messages/{message}', [ContactMessageControlle
 
 Route::delete(config('access.path').'/messages/{message}', [ContactMessageController::class, 'destroy'])
     ->name('admin.messages.destroy');
+
+Route::get(config('access.path').'/profile', [ProfileController::class, 'edit'])
+    ->name('admin.profile.edit');
+
+Route::put(config('access.path').'/profile', [ProfileController::class, 'update'])
+    ->name('admin.profile.update');
