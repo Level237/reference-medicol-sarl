@@ -67,12 +67,12 @@
                                         {{-- Colonne Produit (Image + Nom + Résumé) (sm:col-span-6) --}}
                                         <div class="flex items-start gap-4 sm:col-span-6">
                                             {{-- Miniature produit --}}
-                                            <div class="relative flex h-18 w-18 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#e4e7ec] bg-[#f8fafc] p-1.5 sm:h-20 sm:w-20">
+                                            <div class="relative h-18 w-18 shrink-0 overflow-hidden rounded-xl border border-[#e4e7ec] bg-[#e4e7ec] sm:h-20 sm:w-20">
                                                 @if(!empty($item['image']))
                                                     <img
                                                         src="{{ asset('storage/' . $item['image']) }}"
                                                         alt="{{ $item['name'] }}"
-                                                        class="h-full w-full object-contain"
+                                                        class="absolute inset-0 h-full w-full object-cover"
                                                         loading="lazy"
                                                     >
                                                 @else

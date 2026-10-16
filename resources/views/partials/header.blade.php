@@ -14,8 +14,8 @@
                 <span class="truncate text-base font-bold leading-tight tracking-tight text-[#1d2939] transition-colors group-hover:text-[#029e55] sm:text-lg">
                     Référence Médico Sarl
                 </span>
-                <span class="hidden truncate text-[11px] font-normal leading-tight text-[#667085] sm:block">
-                    votre partenaire en matériel médical
+                <span class="hidden text-[11px] font-normal leading-tight text-[#667085] sm:block">
+                    Tout le matériel médical de A à Z
                 </span>
             </div>
         </a>

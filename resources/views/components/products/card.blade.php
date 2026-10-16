@@ -3,37 +3,25 @@
 <div
     class="group relative flex rounded-2xl border border-[#e4e7ec] bg-white transition-shadow duration-200 hover:shadow-lg hover:shadow-[#0f172a]/5 {{ $view === 'list' ? 'flex-row items-stretch gap-3 p-3 sm:gap-5 sm:p-4' : 'flex-col justify-between p-4 hover:-translate-y-0.5 sm:p-5' }}"
 >
-    {{-- Bouton Favoris / Signet en haut à droite --}}
-    <button
-        type="button"
-        onclick="this.classList.toggle('text-[#029e55]'); this.classList.toggle('text-[#98a2b3]'); this.querySelector('svg').classList.toggle('fill-current')"
-        class="absolute right-4 top-4 z-10 p-1.5 text-[#98a2b3] hover:text-[#029e55] transition-colors rounded-lg"
-        aria-label="Ajouter aux favoris"
-    >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-        </svg>
-    </button>
-
     {{-- Zone Image du produit --}}
-    <a href="{{ route('products.show', $product->slug) }}" class="relative flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#e4e7ec] {{ $view === 'list' ? 'h-24 w-24 sm:h-32 sm:w-32' : 'mb-4 h-48 w-full' }}">
+    <a href="{{ route('products.show', $product->slug) }}" class="relative block shrink-0 overflow-hidden rounded-xl bg-[#e4e7ec] {{ $view === 'list' ? 'h-24 w-24 sm:h-32 sm:w-32' : 'mb-4 h-48 w-full' }}">
         @if($product->coverImage)
             <img
                 src="{{ asset('storage/' . $product->coverImage->path) }}"
                 alt="{{ $product->coverImage->alt ?: $product->name }}"
-                class="max-h-full max-w-full object-contain p-3 group-hover:scale-105 transition-transform duration-300"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
             >
         @elseif($product->meta_image)
             <img
                 src="{{ asset('storage/' . $product->meta_image) }}"
                 alt="{{ $product->name }}"
-                class="max-h-full max-w-full object-contain p-3 group-hover:scale-105 transition-transform duration-300"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
             >
         @else
             {{-- Illustration Médicale de substitution haute qualité --}}
-            <div class="flex flex-col items-center justify-center p-4 text-center">
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
                 <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-xs ring-1 ring-[#e4e7ec] text-[#029e55]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -56,7 +44,7 @@
     </a>
 
     {{-- Informations du produit --}}
-    <div class="flex min-w-0 flex-1 flex-col justify-between {{ $view === 'list' ? 'pr-8' : '' }}">
+    <div class="flex min-w-0 flex-1 flex-col justify-between">
         <div>
             {{-- Catégorie --}}
             <span class="text-xs font-medium text-[#029e55]">

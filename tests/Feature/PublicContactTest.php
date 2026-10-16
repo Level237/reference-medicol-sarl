@@ -24,7 +24,8 @@ class PublicContactTest extends TestCase
             ->assertSee('contact-map', false)
             ->assertDontSee('Signalez un problème', false)
             ->assertSee('+237 699 850 500', false)
-            ->assertSee('jacquesmaud@referencemedicosarl.com', false);
+            ->assertSee('lecpaarnaud@referencemedicosarl.com', false)
+            ->assertSee('maps.google.com/maps?cid=16209078626882780232', false);
     }
 
     public function test_store_persists_message_and_notifies_the_team(): void
@@ -50,7 +51,7 @@ class PublicContactTest extends TestCase
         ]);
 
         Mail::assertSent(ContactMessageReceived::class, function (ContactMessageReceived $mail): bool {
-            return $mail->hasTo('jacquesmaud@referencemedicosarl.com');
+            return $mail->hasTo('lecpaarnaud@referencemedicosarl.com');
         });
 
         $this->followingRedirects()

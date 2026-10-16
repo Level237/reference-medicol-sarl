@@ -18,7 +18,7 @@ class PublicCatalogueTest extends TestCase
             ->assertSee('Référence Médico Sarl', false)
             ->assertSee('assets/images/logo.png', false)
             ->assertSee('+237 699 850 500', false)
-            ->assertSee('jacquesmaud@referencemedicosarl.com', false)
+            ->assertSee('lecpaarnaud@referencemedicosarl.com', false)
             ->assertSee('Catalogue', false)
             ->assertSee('Nos services', false)
             ->assertSee('À propos', false)

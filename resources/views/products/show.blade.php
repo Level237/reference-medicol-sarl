@@ -63,7 +63,7 @@
                 <div class="lg:col-span-7">
                     <div class="sticky top-28 flex flex-col gap-4">
                         {{-- Vue Principale --}}
-                        <div class="relative flex min-h-[380px] sm:min-h-[460px] items-center justify-center overflow-hidden rounded-2xl border border-[#e4e7ec] bg-[#f8fafc] p-6 lg:p-10">
+                        <div class="relative flex min-h-[380px] items-center justify-center overflow-hidden rounded-2xl border border-[#e4e7ec] bg-[#e4e7ec] sm:min-h-[460px]">
                             {{-- Badge Statut --}}
                             <div class="absolute left-4 top-4 z-10 flex flex-col gap-1.5">
                                 @if($product->promo_price && $product->price && $product->promo_price < $product->price)
@@ -83,7 +83,7 @@
                                     id="main-product-image"
                                     src="{{ asset('storage/' . $mainImagePath) }}"
                                     alt="{{ $mainImageAlt }}"
-                                    class="max-h-[360px] sm:max-h-[420px] w-auto max-w-full object-contain transition-transform duration-200 ease-out hover:scale-105"
+                                    class="absolute inset-0 h-full w-full object-cover"
                                 >
                             @else
                                 <div class="flex flex-col items-center justify-center p-8 text-center">
@@ -105,13 +105,13 @@
                                     <button
                                         type="button"
                                         onclick="changeMainImage('{{ asset('storage/' . $img->path) }}', '{{ addslashes($img->alt ?: $product->name) }}', this)"
-                                        class="thumbnail-btn relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#e4e7ec] bg-[#f8fafc] p-2 transition-all duration-150 hover:border-[#029e55] {{ $index === 0 ? 'ring-2 ring-[#029e55] border-transparent' : '' }}"
+                                        class="thumbnail-btn relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-[#e4e7ec] bg-[#e4e7ec] transition-all duration-150 hover:border-[#029e55] {{ $index === 0 ? 'ring-2 ring-[#029e55] border-transparent' : '' }}"
                                         aria-label="Afficher vue {{ $index + 1 }}"
                                     >
                                         <img
                                             src="{{ asset('storage/' . $img->path) }}"
                                             alt="{{ $img->alt ?: $product->name }}"
-                                            class="h-full w-full object-contain"
+                                            class="h-full w-full object-cover"
                                             loading="lazy"
                                         >
                                     </button>

@@ -121,9 +121,9 @@
                     <ul class="mt-5 divide-y divide-[#e4e7ec] border-y border-[#e4e7ec]">
                         @foreach ($items as $item)
                             <li class="flex items-center gap-3 py-3">
-                                <div class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#e4e7ec] bg-[#f8fafc] p-1">
+                                <div class="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#e4e7ec] bg-[#e4e7ec]">
                                     @if (! empty($item['image']))
-                                        <img src="{{ asset('storage/'.$item['image']) }}" alt="" class="h-full w-full object-contain" loading="lazy">
+                                        <img src="{{ asset('storage/'.$item['image']) }}" alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
                                     @else
                                         <span class="text-[10px] font-semibold text-[#98a2b3]">Réf.</span>
                                     @endif

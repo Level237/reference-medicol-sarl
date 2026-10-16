@@ -27,31 +27,15 @@
 
     {{-- Contenu du Hero --}}
     <div class="relative mx-auto flex max-w-7xl flex-col justify-between px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 min-h-[500px] sm:min-h-[540px] lg:min-h-[580px] xl:min-h-[620px]">
-        {{-- Ligne supérieure : Fil d'Ariane & Tagline supérieure droite --}}
-        <div class="flex items-start justify-between gap-4">
+        @if($breadcrumb)
             <nav aria-label="Fil d'Ariane" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]">
-                @if($breadcrumb)
-                    <a href="{{ route('home') }}" class="text-[#029e55] hover:underline transition-colors">Accueil</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                    </svg>
-                    <span class="text-[#667085]">{{ $breadcrumb }}</span>
-                @else
-                    <span class="text-[#1d2939]">Accueil</span>
-                @endif
+                <a href="{{ route('home') }}" class="text-[#029e55] hover:underline transition-colors">Accueil</a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="text-[#667085]">{{ $breadcrumb }}</span>
             </nav>
-
-            {{-- Accroche en haut à droite visible sur écran large --}}
-            <div class="hidden md:block text-right">
-                <p class="text-xs sm:text-sm font-semibold text-[#1d2939] leading-snug">
-                    Équiper<br>
-                    aujourd'hui<br>
-                    pour une santé<br>
-                    meilleure demain
-                </p>
-                <div class="mt-1.5 ml-auto h-0.5 w-8 rounded-full bg-[#029e55]" aria-hidden="true"></div>
-            </div>
-        </div>
+        @endif
 
         {{-- Bloc principal de gauche : Titre, Description et Barre de Recherche --}}
         <div class="my-auto max-w-xl lg:max-w-2xl py-6">

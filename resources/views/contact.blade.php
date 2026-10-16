@@ -140,7 +140,7 @@
                         </p>
                         <p>
                             E-mail :<br>
-                            <a href="mailto:jacquesmaud@referencemedicosarl.com" class="text-white transition-colors hover:text-[#029e55]">jacquesmaud@referencemedicosarl.com</a>
+                            <a href="mailto:lecpaarnaud@referencemedicosarl.com" class="text-white transition-colors hover:text-[#029e55]">lecpaarnaud@referencemedicosarl.com</a>
                         </p>
                     </div>
                 </aside>
@@ -148,10 +148,23 @@
         </div>
 
         <div class="relative z-0 mt-16 sm:mt-20">
-            <div id="contact-map" class="h-80 w-full bg-[#e4e7ec] sm:h-[440px]" role="region" aria-label="Localisation à Douala"></div>
-            <p class="pointer-events-none absolute bottom-4 left-4 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-[#1d2939] shadow-sm">
+            <iframe
+                id="contact-map"
+                title="Localisation de Référence Médico Sarl à Douala"
+                src="https://maps.google.com/maps?cid=16209078626882780232&amp;output=embed"
+                class="h-80 w-full border-0 sm:h-[440px]"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+            ></iframe>
+            <a
+                href="{{ 'https://maps.google.com/?cid=16209078626882780232&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF' }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute bottom-4 left-4 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-[#1d2939] shadow-sm transition-colors hover:text-[#029e55]"
+            >
                 Douala, Cameroun
-            </p>
+            </a>
         </div>
     </section>
 @endsection

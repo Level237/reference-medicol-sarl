@@ -26,9 +26,47 @@
                     </div>
                 </a>
 
-                <p class="mt-4 max-w-sm text-sm leading-relaxed text-[#98a2b3]">
-                    Partenaire de référence pour l'équipement, l'approvisionnement et la maintenance de plateaux techniques en Afrique centrale.
+                <p class="mt-4 text-sm leading-relaxed text-[#98a2b3]">
+                    RMS, votre partenaire de référence pour tous vos besoins de matériels et consommables médicaux. Nous intervenons aussi bien dans la formation du personnel que dans la maintenance de vos appareils médicaux. Nous livrons partout au Cameroun et dans l'Afrique centrale.
                 </p>
+
+                <nav aria-label="Réseaux sociaux" class="mt-5 flex items-center gap-2.5">
+                    <a
+                        href="https://www.facebook.com/share/1E1Joi9BnE/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#98a2b3] transition-colors duration-150 hover:border-[#029e55] hover:text-[#029e55]"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                            <path d="M14.5 8.5V6.75A1.25 1.25 0 0 1 15.75 5.5H17.5V3h-2.1C12.9 3 11 4.9 11 7.4v1.1H9v2.5h2V21h3v-9.999h2.4l.35-2.5H14.5Z" />
+                        </svg>
+                    </a>
+                    <a
+                        href="{{ 'https://www.instagram.com/p/DXWx1PDjDcX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#98a2b3] transition-colors duration-150 hover:border-[#029e55] hover:text-[#029e55]"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4" aria-hidden="true">
+                            <rect x="4" y="4" width="16" height="16" rx="4" />
+                            <circle cx="12" cy="12" r="3.5" />
+                            <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://cm.linkedin.com/company/reference-medico-sarl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#98a2b3] transition-colors duration-150 hover:border-[#029e55] hover:text-[#029e55]"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                            <path d="M6.2 9H3.6v11.2h2.6V9ZM4.9 3.6A1.6 1.6 0 1 0 4.9 6.8 1.6 1.6 0 0 0 4.9 3.6ZM20.4 13.3c0-3.2-1.7-4.7-4-4.7-1.8 0-2.7 1-3.2 1.7V9H10.6v11.2h2.6v-6.2c0-.3.1-.7.2-1 .3-.7 1-1.5 2.1-1.5 1.5 0 2.1 1.1 2.1 2.8v5.9h2.6v-6.9Z" />
+                        </svg>
+                    </a>
+                </nav>
 
                 <p class="mt-5 text-xs text-[#98a2b3]">
                     Siège social : Douala, Cameroun
@@ -97,45 +135,30 @@
                         </a>
                     </li>
                     <li>
-                        <a href="mailto:jacquesmaud@referencemedicosarl.com" class="group flex items-start gap-2.5 text-[#98a2b3] transition-colors duration-150 ease-out hover:text-white">
+                        <a href="mailto:lecpaarnaud@referencemedicosarl.com" class="group flex items-start gap-2.5 text-[#98a2b3] transition-colors duration-150 ease-out hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 shrink-0 text-[#029e55]" aria-hidden="true">
                                 <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />
                                 <path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z" />
                             </svg>
-                            <span class="truncate transition-colors duration-150 group-hover:text-[#029e55]">jacquesmaud@referencemedicosarl.com</span>
+                            <span class="truncate transition-colors duration-150 group-hover:text-[#029e55]">lecpaarnaud@referencemedicosarl.com</span>
                         </a>
                     </li>
-                    <li class="flex items-start gap-2.5 text-[#98a2b3]">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 shrink-0 text-[#029e55]" aria-hidden="true">
-                            <path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 1 0 3 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 0 0 2.273 1.765 11.79 11.79 0 0 0 1.04 574l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd" />
-                        </svg>
-                        <span>Douala, Région du Littoral, Cameroun</span>
+                    <li>
+                        <a href="{{ 'https://maps.google.com/?cid=16209078626882780232&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF' }}" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2.5 text-[#98a2b3] transition-colors duration-150 ease-out hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 shrink-0 text-[#029e55]" aria-hidden="true">
+                                <path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 1 0 3 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 0 0 2.273 1.765 11.79 11.79 0 0 0 1.04 574l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="transition-colors duration-150 group-hover:text-[#029e55]">Douala, Région du Littoral, Cameroun</span>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 
-    {{-- Ligne inférieure : Copyright & Mentions --}}
     <div class="border-t border-white/10 bg-[#0f172a]">
-        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
-            <p class="text-xs text-[#98a2b3]">
-                &copy; {{ date('Y') }} Référence Médico Sarl. Tous droits réservés.
-            </p>
-
-            <div class="flex items-center gap-5 text-xs text-[#98a2b3]">
-                <a href="{{ route('home') }}#mentions" class="transition-colors duration-150 hover:text-white">
-                    Mentions légales
-                </a>
-                <span class="text-white/20" aria-hidden="true">&bull;</span>
-                <a href="{{ route('home') }}#confidentialite" class="transition-colors duration-150 hover:text-white">
-                    Confidentialité
-                </a>
-                <span class="text-white/20" aria-hidden="true">&bull;</span>
-                <a href="{{ route('access.create') }}" class="transition-colors duration-150 hover:text-white">
-                    Espace pro
-                </a>
-            </div>
-        </div>
+        <p class="px-4 py-6 text-center text-xs text-[#98a2b3]">
+            &copy; {{ date('Y') }} Référence Médico Sarl. Tous droits réservés.
+        </p>
     </div>
 </footer>

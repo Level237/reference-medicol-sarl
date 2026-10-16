@@ -74,25 +74,13 @@
         ></div>
 
         <div class="relative mx-auto flex max-w-7xl flex-col justify-between px-4 py-6 sm:min-h-[340px] sm:px-6 sm:py-8 lg:min-h-[370px] lg:px-8 lg:py-10">
-            <div class="flex items-start justify-between gap-4">
-                <nav aria-label="Fil d'Ariane" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]">
-                    <a href="{{ route('home') }}" class="text-[#029e55] transition-colors hover:underline">Accueil</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                    </svg>
-                    <span class="text-[#667085]">Suivi de demande</span>
-                </nav>
-
-                <div class="hidden md:block text-right">
-                    <p class="text-xs sm:text-sm font-semibold text-[#1d2939] leading-snug">
-                        Équiper<br>
-                        aujourd'hui<br>
-                        pour une santé<br>
-                        meilleure demain
-                    </p>
-                    <div class="mt-1.5 h-0.5 w-8 bg-[#029e55] ml-auto rounded-full" aria-hidden="true"></div>
-                </div>
-            </div>
+            <nav aria-label="Fil d'Ariane" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]">
+                <a href="{{ route('home') }}" class="text-[#029e55] transition-colors hover:underline">Accueil</a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[#98a2b3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="text-[#667085]">Suivi de demande</span>
+            </nav>
 
             <div class="my-auto max-w-2xl py-4 sm:py-6">
                 <h1 class="text-3xl font-extrabold tracking-tight text-[#1d2939] leading-[1.15] sm:text-4xl lg:text-[40px]">
@@ -274,9 +262,9 @@
                                     $summary = $item->product?->summary;
                                 @endphp
                                 <li class="flex items-center gap-4">
-                                    <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden bg-white">
+                                    <div class="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-[#e4e7ec]">
                                         @if ($image)
-                                            <img src="{{ asset('storage/'.$image) }}" alt="" class="h-full w-full object-contain" loading="lazy">
+                                            <img src="{{ asset('storage/'.$image) }}" alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
                                         @else
                                             <span class="text-[10px] font-semibold text-[#98a2b3]">Réf.</span>
                                         @endif
@@ -325,11 +313,11 @@
                                         </svg>
                                         <span>+237 699 850 500</span>
                                     </a>
-                                    <a href="mailto:jacquesmaud@referencemedicosarl.com" class="flex items-center gap-2 text-[#667085] transition-colors hover:text-[#029e55]">
+                                    <a href="mailto:lecpaarnaud@referencemedicosarl.com" class="flex items-center gap-2 text-[#667085] transition-colors hover:text-[#029e55]">
                                         <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
-                                        <span class="truncate">jacquesmaud@referencemedicosarl.com</span>
+                                        <span class="truncate">lecpaarnaud@referencemedicosarl.com</span>
                                     </a>
                                 </div>
                             </div>

@@ -13,9 +13,10 @@ class PublicHomeTest extends TestCase
 
     public function test_home_renders_hero_and_navigation_to_catalogue(): void
     {
-        $html = $this->get(route('home'))
+        $this->get(route('home'))
             ->assertOk()
             ->assertSee('Référence Médico Sarl', false)
+            ->assertSee('Tout le matériel médical de A à Z', false)
             ->assertSee('Tout le matériel', false)
             ->assertSee('pour vos soins.', false)
             ->assertSee(route('catalogue'), false)
@@ -24,13 +25,8 @@ class PublicHomeTest extends TestCase
             ->assertSee('Matériel médical et équipements hospitaliers à Douala | Référence Médico Sarl', false)
             ->assertSee('rel="canonical"', false)
             ->assertDontSee('—', false)
-            ->getContent();
-
-        preg_match('/aria-label="Fil d\'Ariane".*?<\/nav>/s', $html, $breadcrumb);
-
-        $this->assertNotEmpty($breadcrumb);
-        $this->assertStringContainsString('Accueil', $breadcrumb[0]);
-        $this->assertStringNotContainsString('Catalogue', $breadcrumb[0]);
+            ->assertDontSee('Accueil', false)
+            ->assertDontSee('meilleure demain', false);
     }
 
     public function test_home_renders_banners_carousel_without_automatic_modal(): void

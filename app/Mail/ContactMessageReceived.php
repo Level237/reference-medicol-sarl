@@ -21,7 +21,7 @@ class ContactMessageReceived extends Mailable
         $name = str_replace(["\r", "\n"], '', $this->message->name);
 
         return new Envelope(
-            to: [new Address('jacquesmaud@referencemedicosarl.com')],
+            to: [new Address('lecpaarnaud@referencemedicosarl.com')],
             replyTo: [new Address($this->message->email, $name)],
             subject: 'Message du site — '.$name,
         );
